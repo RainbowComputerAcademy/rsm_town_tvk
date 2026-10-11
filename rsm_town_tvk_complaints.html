@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ta" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்</title>
+    
+    <!-- 
+    =================================================================================
+    HOW TO EDIT / ADD COMPLAINTS IN GITHUB:
+    =================================================================================
+    1. Open this file on GitHub and click the pencil icon ✏️ (Edit).
+    2. Scroll down to the bottom where you see `const complaintsData = [ ... ]`.
+    3. Copy one of the complaint objects {...} and paste it as a new item in the list.
+    4. Update the values (id, dateReceived, closedDate, ward, secretary, category, details, location, priority, status).
+    5. Commit your changes. GitHub Pages will deploy the update automatically within seconds!
+    =================================================================================
+    -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tvk: {
+                            red: '#990000',
+                            darkRed: '#7A0000',
+                            gold: '#FFC72C',
+                            lightGold: '#FFF3C4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Mukta Malar', 'sans-serif'],
+                        tamil: ['Mukta Malar', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        /* Custom Scrollbar for desktop table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="h-full font-sans text-slate-800 antialiased flex flex-col bg-slate-100 min-h-screen">
+
+    <!-- Header / Banner Section -->
+    <header class="bg-gradient-to-r from-tvk-darkRed via-tvk-red to-tvk-darkRed text-white shadow-xl border-b-4 border-tvk-gold sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- TVK Flag / Badge Graphic -->
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-tvk-gold flex items-center justify-center font-bold text-tvk-red text-xl sm:text-2xl shadow-inner border-2 border-white shrink-0">
+                        TVK
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white font-tamil drop-shadow-sm">
+                            தமிழக வெற்றிக் கழகம்
+                        </h1>
+                        <p class="text-xs sm:text-sm text-tvk-gold font-medium font-tamil tracking-wide">
+                            ஆர்.எஸ்.மங்கலம் பேரூர் கழகம் • R.S. Mangalam Town
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-black/20 backdrop-blur-md rounded-xl p-3 border border-white/10 text-right self-start md:self-auto">
+                    <h2 class="text-sm font-semibold text-white font-tamil">வார்டு செயலாளர்கள் புகார் பதிவு தளம்</h2>
+                    <p class="text-xs text-slate-200">Ward Secretary Complaints Tracker</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Stat Cards Summary -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <!-- Total Complaints -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">மொத்த புகார்கள்</p>
+                    <p class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1" id="stat-total">0</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl">
+                    <i class="ph ph-clipboard-text"></i>
+                </div>
+            </div>
+
+            <!-- Pending Complaints -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-amber-600 uppercase tracking-wider">நிலுவையில் (Pending)</p>
+                    <p class="text-2xl sm:text-3xl font-bold text-amber-600 mt-1" id="stat-pending">0</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">
+                    <i class="ph ph-clock-afternoon"></i>
+                </div>
+            </div>
+
+            <!-- In Progress Complaints -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-blue-600 uppercase tracking-wider">நடவடிக்கையில்</p>
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-600 mt-1" id="stat-inprogress">0</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">
+                    <i class="ph ph-gear font-bold"></i>
+                </div>
+            </div>
+
+            <!-- Resolved Complaints -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">தீர்க்கப்பட்டவை</p>
+                    <p class="text-2xl sm:text-3xl font-bold text-emerald-600 mt-1" id="stat-resolved">0</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl">
+                    <i class="ph ph-check-circle"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filters Bar -->
+        <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <!-- Search Box -->
+                <div class="lg:col-span-2 relative">
+                    <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                    <input type="text" id="searchInput" placeholder="தேடுக (Details, Secretary, Area, ID)..." 
+                           class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-tvk-red focus:border-transparent text-sm bg-slate-50 focus:bg-white transition">
+                </div>
+
+                <!-- Status Filter -->
+                <div>
+                    <select id="statusFilter" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-tvk-red focus:border-transparent text-sm bg-slate-50 focus:bg-white transition text-slate-700">
+                        <option value="">அனைத்து நிலைகளும் (All Status)</option>
+                        <option value="Pending">Pending (நிலுவையில்)</option>
+                        <option value="In Progress">In Progress (நடவடிக்கையில்)</option>
+                        <option value="Resolved">Resolved (தீர்க்கப்பட்டது)</option>
+                    </select>
+                </div>
+
+                <!-- Priority Filter -->
+                <div>
+                    <select id="priorityFilter" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-tvk-red focus:border-transparent text-sm bg-slate-50 focus:bg-white transition text-slate-700">
+                        <option value="">அனைத்து முன்னுரிமை (Priority)</option>
+                        <option value="High">High (முக்கியம்)</option>
+                        <option value="Medium">Medium (நடுத்தரம்)</option>
+                        <option value="Low">Low (சாதாரண)</option>
+                    </select>
+                </div>
+
+                <!-- Ward Filter -->
+                <div>
+                    <select id="wardFilter" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-tvk-red focus:border-transparent text-sm bg-slate-50 focus:bg-white transition text-slate-700">
+                        <option value="">அனைத்து வார்டுகள் (All Wards)</option>
+                        <!-- Dynamic options will be populated by JS -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-500 pt-1 border-t border-slate-100">
+                <span id="resultsCount">காண்பிக்கப்படும் புகார்கள்: 0</span>
+                <button id="clearFiltersBtn" class="text-tvk-red hover:text-tvk-darkRed font-semibold flex items-center gap-1">
+                    <i class="ph ph-arrows-counter-clockwise"></i> Clear Filters
+                </button>
+            </div>
+        </div>
+
+        <!-- Desktop Web View (Table Format) -->
+        <div class="hidden lg:block bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left text-sm text-slate-700">
+                    <thead class="bg-slate-800 text-white font-medium text-xs uppercase tracking-wider sticky top-0">
+                        <tr>
+                            <th class="py-3.5 px-4">ID</th>
+                            <th class="py-3.5 px-4">தேதி (Received)</th>
+                            <th class="py-3.5 px-4">முடிக்கப்பட்ட தேதி (Closed)</th>
+                            <th class="py-3.5 px-4">வார்டு</th>
+                            <th class="py-3.5 px-4">செயலாளர் பெயர்</th>
+                            <th class="py-3.5 px-4">வகை (Category)</th>
+                            <th class="py-3.5 px-4">புகார் விவரம் (Details)</th>
+                            <th class="py-3.5 px-4">இடம் / பகுதி</th>
+                            <th class="py-3.5 px-4 text-center">முன்னுரிமை</th>
+                            <th class="py-3.5 px-4 text-center">நிலை (Status)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="desktopTableBody" class="divide-y divide-slate-200">
+                        <!-- JS renders rows here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mobile View (Card List Format) -->
+        <div class="lg:hidden space-y-4" id="mobileCardsContainer">
+            <!-- JS renders cards here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="noResults" class="hidden bg-white rounded-2xl p-12 text-center border border-slate-200 shadow-sm">
+            <i class="ph ph-folder-open text-5xl text-slate-300 mb-3"></i>
+            <h3 class="text-lg font-bold text-slate-700">புகார்கள் எதுவும் கிடைக்கவில்லை</h3>
+            <p class="text-sm text-slate-500 mt-1">நீங்கள் தேடிய அல்லது வடிகட்டிய விவரத்திற்கு ஏற்ப புகார்கள் இல்லை.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-slate-300 font-tamil font-medium">தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்</p>
+            <p class="mt-1 text-slate-500">Hosted on GitHub Pages • Developed for Ward Secretaries Complaints Management</p>
+        </div>
+    </footer>
+
+    <script>
+        // =========================================================================
+        // MANUAL EDITABLE DATA ARRAY
+        // Edit or Add entries below directly inside GitHub!
+        // =========================================================================
+        const complaintsData = [
+            {
+                id: 1,
+                dateReceived: "12-10-2026",
+                closedDate: "-",
+                ward: "11",
+                secretary: "Lakshmanan",
+                category: "Water",
+                details: "Pitchana Kottai water line repair / குடிநீர் குழாய் பழுது",
+                location: "Pitchana Kottai",
+                priority: "High",
+                status: "Pending"
+            }
+            
+            /*,
+               {
+                id: 2,
+                dateReceived: "10-10-2026",
+                closedDate: "11-10-2026",
+                ward: "-1",
+                secretary: "Test",
+                category: "Test",
+                details: "Test",
+                location: "Test",
+                priority: "Test",
+                status: "Test"
+            } */
+        ];
+
+        // --- Application Script Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const statusFilter = document.getElementById('statusFilter');
+            const priorityFilter = document.getElementById('priorityFilter');
+            const wardFilter = document.getElementById('wardFilter');
+            const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+
+            // Populate Ward Options Dynamically
+            const uniqueWards = [...new Set(complaintsData.map(c => c.ward))].sort((a,b) => a - b);
+            uniqueWards.forEach(ward => {
+                const opt = document.createElement('option');
+                opt.value = ward;
+                opt.textContent = `Ward ${ward}`;
+                wardFilter.appendChild(opt);
+            });
+
+            // Status Styling Helper
+            function getStatusBadge(status) {
+                switch (status.toLowerCase()) {
+                    case 'resolved':
+                        return `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200"><i class="ph ph-check-circle mr-1"></i> Resolved</span>`;
+                    case 'in progress':
+                        return `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200"><i class="ph ph-gear mr-1"></i> In Progress</span>`;
+                    default:
+                        return `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200"><i class="ph ph-clock-afternoon mr-1"></i> Pending</span>`;
+                }
+            }
+
+            // Priority Badge Helper
+            function getPriorityBadge(priority) {
+                switch (priority.toLowerCase()) {
+                    case 'high':
+                        return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-red-100 text-red-700 border border-red-200"><i class="ph ph-warning-circle mr-1"></i> High</span>`;
+                    case 'medium':
+                        return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-orange-100 text-orange-700 border border-orange-200">Medium</span>`;
+                    default:
+                        return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">Low</span>`;
+                }
+            }
+
+            // Category Icon Helper
+            function getCategoryIcon(category) {
+                const cat = category.toLowerCase();
+                if (cat.includes('water')) return `<i class="ph ph-drop text-blue-500 text-base"></i>`;
+                if (cat.includes('light') || cat.includes('street')) return `<i class="ph ph-lightbulb text-amber-500 text-base"></i>`;
+                if (cat.includes('road')) return `<i class="ph ph-path text-slate-500 text-base"></i>`;
+                if (cat.includes('sanitation') || cat.includes('drain')) return `<i class="ph ph-trash text-emerald-500 text-base"></i>`;
+                return `<i class="ph ph-info text-slate-400 text-base"></i>`;
+            }
+
+            // Update Header Counter Cards
+            function updateSummaryStats(data) {
+                document.getElementById('stat-total').textContent = data.length;
+                document.getElementById('stat-pending').textContent = data.filter(c => c.status.toLowerCase() === 'pending').length;
+                document.getElementById('stat-inprogress').textContent = data.filter(c => c.status.toLowerCase() === 'in progress').length;
+                document.getElementById('stat-resolved').textContent = data.filter(c => c.status.toLowerCase() === 'resolved').length;
+            }
+
+            // Render Function
+            function render() {
+                const searchVal = searchInput.value.toLowerCase().trim();
+                const statusVal = statusFilter.value;
+                const priorityVal = priorityFilter.value;
+                const wardVal = wardFilter.value;
+
+                // Filter Logic
+                const filtered = complaintsData.filter(item => {
+                    const matchesSearch = 
+                        item.details.toLowerCase().includes(searchVal) ||
+                        item.secretary.toLowerCase().includes(searchVal) ||
+                        item.location.toLowerCase().includes(searchVal) ||
+                        item.category.toLowerCase().includes(searchVal) ||
+                        item.id.toString().includes(searchVal);
+
+                    const matchesStatus = !statusVal || item.status.toLowerCase() === statusVal.toLowerCase();
+                    const matchesPriority = !priorityVal || item.priority.toLowerCase() === priorityVal.toLowerCase();
+                    const matchesWard = !wardVal || item.ward === wardVal;
+
+                    return matchesSearch && matchesStatus && matchesPriority && matchesWard;
+                });
+
+                // Update Count Indicator
+                document.getElementById('resultsCount').textContent = `காண்பிக்கப்படும் புகார்கள்: ${filtered.length} / ${complaintsData.length}`;
+
+                // Render Desktop Table
+                const tbody = document.getElementById('desktopTableBody');
+                tbody.innerHTML = '';
+
+                // Render Mobile Cards
+                const mobileCards = document.getElementById('mobileCardsContainer');
+                mobileCards.innerHTML = '';
+
+                const noResults = document.getElementById('noResults');
+
+                if (filtered.length === 0) {
+                    noResults.classList.remove('hidden');
+                } else {
+                    noResults.classList.add('hidden');
+
+                    filtered.forEach(item => {
+                        // Desktop Row
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-slate-50 transition border-b border-slate-100";
+                        tr.innerHTML = `
+                            <td class="py-3.5 px-4 font-bold text-slate-900">#${item.id}</td>
+                            <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">${item.dateReceived}</td>
+                            <td class="py-3.5 px-4 whitespace-nowrap font-medium text-slate-600">${item.closedDate || '-'}</td>
+                            <td class="py-3.5 px-4 font-semibold text-tvk-red">Ward ${item.ward}</td>
+                            <td class="py-3.5 px-4 font-medium text-slate-800">${item.secretary}</td>
+                            <td class="py-3.5 px-4">
+                                <span class="inline-flex items-center gap-1.5 font-medium text-slate-700">
+                                    ${getCategoryIcon(item.category)} ${item.category}
+                                </span>
+                            </td>
+                            <td class="py-3.5 px-4 max-w-xs text-slate-700">${item.details}</td>
+                            <td class="py-3.5 px-4 text-slate-600">${item.location}</td>
+                            <td class="py-3.5 px-4 text-center">${getPriorityBadge(item.priority)}</td>
+                            <td class="py-3.5 px-4 text-center whitespace-nowrap">${getStatusBadge(item.status)}</td>
+                        `;
+                        tbody.appendChild(tr);
+
+                        // Mobile Card
+                        const card = document.createElement('div');
+                        card.className = "bg-white rounded-2xl p-4 shadow-sm border border-slate-200 space-y-3";
+                        card.innerHTML = `
+                            <div class="flex items-start justify-between pb-2 border-b border-slate-100">
+                                <div>
+                                    <span class="text-xs font-bold px-2 py-0.5 rounded bg-tvk-red text-white">Ward ${item.ward}</span>
+                                    <span class="text-xs font-bold text-slate-400 ml-2">#${item.id}</span>
+                                    <h4 class="font-bold text-slate-800 mt-1 flex items-center gap-1.5">
+                                        ${getCategoryIcon(item.category)} ${item.category}
+                                    </h4>
+                                </div>
+                                <div class="text-right">
+                                    ${getStatusBadge(item.status)}
+                                </div>
+                            </div>
+
+                            <div class="text-sm text-slate-700 font-medium">
+                                ${item.details}
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                                <div>
+                                    <p class="text-slate-400">செயலாளர் (Secretary):</p>
+                                    <p class="font-semibold text-slate-700">${item.secretary}</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-400">இடம் (Location):</p>
+                                    <p class="font-semibold text-slate-700">${item.location}</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-400">பதிவு தேதி (Received):</p>
+                                    <p class="font-medium text-slate-600">${item.dateReceived}</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-400">முடிக்கப்பட்ட தேதி (Closed):</p>
+                                    <p class="font-medium text-slate-600">${item.closedDate || '-'}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-1">
+                                <span class="text-xs text-slate-500">Priority Level:</span>
+                                ${getPriorityBadge(item.priority)}
+                            </div>
+                        `;
+                        mobileCards.appendChild(card);
+                    });
+                }
+
+                updateSummaryStats(complaintsData);
+            }
+
+            // Event Listeners
+            searchInput.addEventListener('input', render);
+            statusFilter.addEventListener('change', render);
+            priorityFilter.addEventListener('change', render);
+            wardFilter.addEventListener('change', render);
+
+            clearFiltersBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                statusFilter.value = '';
+                priorityFilter.value = '';
+                wardFilter.value = '';
+                render();
+            });
+
+            // Initial Render
+            render();
+        });
+    </script>
+</body>
+</html>
