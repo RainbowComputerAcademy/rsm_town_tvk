@@ -6,11 +6,16 @@
     <title>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி</title>
     <style>
         :root {
-            --tvk-red: #D2141C;
+            --tvk-red: #A30000;
+            --tvk-bright-red: #D2141C;
             --tvk-yellow: #FFCC00;
-            --tvk-dark-red: #990000;
-            --bg-color: #F4F4F9;
-            --text-color: #222222;
+            --tvk-gold: #FFB700;
+            --bg-color: #FFFDF0;
+            --card-bg: #FFFFFF;
+            --row-even: #FFF8DC;
+            --row-odd: #FFFFFF;
+            --row-hover: #FFE899;
+            --text-color: #1A1A1A;
         }
 
         body {
@@ -21,20 +26,20 @@
             color: var(--text-color);
         }
 
-        /* Header Styling */
         header {
-            background: linear-gradient(135deg, var(--tvk-red), var(--tvk-dark-red));
+            background: linear-gradient(135deg, var(--tvk-red), var(--tvk-bright-red));
             color: #FFFFFF;
             text-align: center;
             padding: 25px 15px;
-            border-bottom: 5px solid var(--tvk-yellow);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border-bottom: 6px solid var(--tvk-yellow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         header h1 {
             margin: 0;
             font-size: 1.8rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            letter-spacing: 0.5px;
         }
 
         .container {
@@ -43,27 +48,60 @@
             padding: 0 15px;
         }
 
+        /* Filter Box Styles */
+        .filter-box {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(163,0,0,0.1);
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 2px solid var(--tvk-yellow);
+        }
+
+        .filter-box label {
+            font-weight: bold;
+            color: var(--tvk-red);
+            font-size: 1.05rem;
+        }
+
+        .filter-box input {
+            flex: 1;
+            min-width: 250px;
+            padding: 11px 15px;
+            border: 1px solid #CCC;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .filter-box input:focus {
+            border-color: var(--tvk-bright-red);
+            box-shadow: 0 0 5px rgba(210, 20, 28, 0.3);
+        }
+
         /* Ward Card Styling */
         .ward-card {
-            background: #FFFFFF;
-            margin-bottom: 35px;
+            background: var(--card-bg);
+            margin-bottom: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border: 1px solid #E0E0E0;
-            border-top: 5px solid var(--tvk-red);
+            border-top: 6px solid var(--tvk-red);
             overflow: hidden;
         }
 
         .ward-header {
-            background-color: var(--tvk-yellow);
+            background: linear-gradient(90deg, var(--tvk-yellow), var(--tvk-gold));
             color: #000000;
             padding: 12px 20px;
             font-size: 1.25rem;
             font-weight: bold;
             border-bottom: 2px solid var(--tvk-red);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .table-responsive {
@@ -79,23 +117,28 @@
 
         th, td {
             padding: 12px 15px;
-            border-bottom: 1px solid #EAEAEA;
+            border-bottom: 1px solid #E5E5E5;
             font-size: 0.95rem;
         }
 
         th {
-            background-color: #F8F8F8;
-            color: var(--tvk-dark-red);
+            background-color: var(--tvk-red);
+            color: #FFFFFF;
             font-weight: bold;
             white-space: nowrap;
         }
 
+        /* Odd / Even Row Styling */
+        tr:nth-child(odd) {
+            background-color: var(--row-odd);
+        }
+
         tr:nth-child(even) {
-            background-color: #FAFAFA;
+            background-color: var(--row-even);
         }
 
         tr:hover {
-            background-color: #FFF9E6;
+            background-color: var(--row-hover) !important;
         }
 
         .sno-col {
@@ -105,21 +148,23 @@
 
         .mobile-col {
             white-space: nowrap;
-            font-weight: 500;
+            font-weight: bold;
+            color: var(--tvk-red);
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 600px) {
             header h1 {
                 font-size: 1.3rem;
             }
-            
-            .ward-header {
-                font-size: 1.1rem;
+            .filter-box {
+                flex-direction: column;
+                align-items: stretch;
             }
-
+            .filter-box input {
+                min-width: 100%;
+            }
             th, td {
-                padding: 8px 10px;
+                padding: 9px 10px;
                 font-size: 0.88rem;
             }
         }
@@ -133,367 +178,330 @@
 
     <div class="container">
 
-        <!-- WARD 1 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 1</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A.R. மணிகண்டன்</td><td class="mobile-col">9791738729</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>I. நவீன்</td><td class="mobile-col">8870634462</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>R. இளங்கோவன்</td><td class="mobile-col">8122996294</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>V. பஞ்சவர்ணம்</td><td class="mobile-col">9488143444</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>N. தேவி</td><td class="mobile-col">96295 34503</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>A. கருணாகரன்</td><td class="mobile-col">7338879978</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>K. ஜெரால்டு</td><td class="mobile-col">7708230450</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>T. சரவணன்</td><td class="mobile-col">95787 37881</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>D. கரண் ராஜன்</td><td class="mobile-col">76390 19727</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>I. ஜெயசீலி</td><td class="mobile-col">9786979084</td></tr>
-                    </tbody>
-                </table>
-            </div>
+        <!-- Live Search / Filter Input -->
+        <div class="filter-box">
+            <label for="searchBar">தேடுக (Search):</label>
+            <input type="text" id="searchBar" placeholder="வார்டு எண், பெயர் அல்லது கைப்பேசி எண் மூலம் தேடவும்..." onkeyup="filterDirectory()">
         </div>
 
-        <!-- WARD 2 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 2</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>அமீன் ஷேக்</td><td class="mobile-col">80988 6852</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>கவியாகேஷ்</td><td class="mobile-col">70103 11445</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>தமீம் அன்சாரி</td><td class="mobile-col">97515 72051</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>ராஜா பாண்டி</td><td class="mobile-col">75988 86061</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>சரண்யா</td><td class="mobile-col">96299 56165</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+        <div id="wardsContainer">
+            <!-- WARD 1 -->
+            <div class="ward-card" data-ward="1">
+                <div class="ward-header">வார்டு எண்: 1</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A.R. மணிகண்டன்</td><td class="mobile-col">9791738729</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>I. நவீன்</td><td class="mobile-col">8870634462</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>R. இளங்கோவன்</td><td class="mobile-col">8122996294</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>V. பஞ்சவர்ணம்</td><td class="mobile-col">9488143444</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>N. தேவி</td><td class="mobile-col">9629534503</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>A. கருணாகரன்</td><td class="mobile-col">7338879978</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>K. ஜெரால்டு</td><td class="mobile-col">7708230450</td></tr>
+                            <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>T. சரவணன்</td><td class="mobile-col">9578737881</td></tr>
+                            <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>D. கரண் ராஜன்</td><td class="mobile-col">7639019727</td></tr>
+                            <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>I. ஜெயசீலி</td><td class="mobile-col">9786979084</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 3 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 3</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>அரசு</td><td class="mobile-col">85082 98033</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 2 -->
+            <div class="ward-card" data-ward="2">
+                <div class="ward-header">வார்டு எண்: 2</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>அமீன் ஷேக்</td><td class="mobile-col">8098868525</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>கவியாகேஷ்</td><td class="mobile-col">7010311445</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>தமீம் அன்சாரி</td><td class="mobile-col">9751572051</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>ராஜா பாண்டி</td><td class="mobile-col">7598886061</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>சரண்யா</td><td class="mobile-col">9629956165</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 4 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 4</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>M. சுரேஷ்</td><td class="mobile-col">9092951072</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. ராஜ்குமரன்</td><td class="mobile-col">9345764865</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. சரஸ்வதி</td><td class="mobile-col">7639674363</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. கௌசல்யா</td><td class="mobile-col">7418390191</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>X. பிரான்சிஸ் பிரபு</td><td class="mobile-col">7904531507</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>S. பாஸ்கர்</td><td class="mobile-col">9843486995</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>V. ஸ்டெப்லின்</td><td class="mobile-col">9688782262</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 3 -->
+            <div class="ward-card" data-ward="3">
+                <div class="ward-header">வார்டு எண்: 3</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>R. அரசு</td><td class="mobile-col">8508298033</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>M. வேலரசு</td><td class="mobile-col">9344255217</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>K. முத்துப்பாண்டி</td><td class="mobile-col">7639956380</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>A. அனுஷ்யா</td><td class="mobile-col">9942883769</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>G. சஞ்சய்</td><td class="mobile-col">6380138589</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>K. வெங்கடேஷ்</td><td class="mobile-col">6296780079</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>M. ராமநாதன்</td><td class="mobile-col">7092269934</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 5 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 5</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>ஜான் மெர்லின்</td><td class="mobile-col">9500797756</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>அ. ஆகாஷ்</td><td class="mobile-col">9344781353</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>ச. இளையராஜா</td><td class="mobile-col">7530096890</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. சீனி முகமது</td><td class="mobile-col">9025662913</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>கெ. செங்கோல் மேரி</td><td class="mobile-col">6380003797</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>A. அபினா</td><td class="mobile-col">9342238760</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>P. ஆன்சி</td><td class="mobile-col">9626243868</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 4 -->
+            <div class="ward-card" data-ward="4">
+                <div class="ward-header">வார்டு எண்: 4</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>M. சுரேஷ்</td><td class="mobile-col">9092951072</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. ராஜ்குமரன்</td><td class="mobile-col">9345764865</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. சரஸ்வதி</td><td class="mobile-col">7639674363</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. கௌசல்யா</td><td class="mobile-col">7418390191</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>X. பிரான்சிஸ் பிரபு</td><td class="mobile-col">7904531507</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>S. பாஸ்கர்</td><td class="mobile-col">9843486995</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>V. ஸ்டெப்லின்</td><td class="mobile-col">9688782262</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 6 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 6</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>மணிகண்டன்</td><td class="mobile-col">6381641601</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 5 -->
+            <div class="ward-card" data-ward="5">
+                <div class="ward-header">வார்டு எண்: 5</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>ஜான் மெர்லின்</td><td class="mobile-col">9500797756</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>அ. ஆகாஷ்</td><td class="mobile-col">9344781353</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>ச. இளையராஜா</td><td class="mobile-col">7530096890</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. சீனி முகமது</td><td class="mobile-col">9025662913</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>கெ. செங்கோல் மேரி</td><td class="mobile-col">6380003797</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>A. அபினா</td><td class="mobile-col">9342238760</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>P. ஆன்சி</td><td class="mobile-col">9626243868</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 7 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 7</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>மு. கணேசன்</td><td class="mobile-col">97501 86394</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>T. சுரேஷ்</td><td class="mobile-col">93641 55333</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>YDR ஜவஹர்லால்</td><td class="mobile-col">90470 16354</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>P. பொய்யாமொழி</td><td class="mobile-col">97872 17313</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>V. முனீஸ்வரி</td><td class="mobile-col">84280 99741</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>SP கண்ணன்</td><td class="mobile-col">84899 34660</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>S. விஜய்ராகவன்</td><td class="mobile-col">94888 60244</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>R. தனுசு</td><td class="mobile-col">82485 94208</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>R. பிரபாகரன்</td><td class="mobile-col">73052 57760</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>V. நாடியம்மாள்</td><td class="mobile-col">96980 12738</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 6 -->
+            <div class="ward-card" data-ward="6">
+                <div class="ward-header">வார்டு எண்: 6</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>மணிகண்டன்</td><td class="mobile-col">6381641601</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 8 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 8</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>R. சதீஷ் குமார்</td><td class="mobile-col">9345694985</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. கார்த்திகா</td><td class="mobile-col">9092154741</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>V. மணி பாலன்</td><td class="mobile-col">9361814694</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>ரியாஸ் கான்</td><td class="mobile-col">9952997271</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>G. மீனாட்சி</td><td class="mobile-col">9865508494</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 7 -->
+            <div class="ward-card" data-ward="7">
+                <div class="ward-header">வார்டு எண்: 7</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>மு. கணேசன்</td><td class="mobile-col">9750186394</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>T. சுரேஷ்</td><td class="mobile-col">9364155333</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>YDR ஜவஹர்லால்</td><td class="mobile-col">9047016354</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>P. பொய்யாமொழி</td><td class="mobile-col">9787217313</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>V. முனீஸ்வரி</td><td class="mobile-col">8428099741</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>SP கண்ணன்</td><td class="mobile-col">8489934660</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>S. விஜய்ராகவன்</td><td class="mobile-col">9488860244</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 9 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 9</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>சுல்தான் கனி</td><td class="mobile-col">9092953012</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 8 -->
+            <div class="ward-card" data-ward="8">
+                <div class="ward-header">வார்டு எண்: 8</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>R. சதீஷ் குமார்</td><td class="mobile-col">9345694985</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. கார்த்திகா</td><td class="mobile-col">9092154741</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>V. மணி பாலன்</td><td class="mobile-col">9361814694</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>ரியாஸ் கான்</td><td class="mobile-col">9952997271</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>G. மீனாட்சி</td><td class="mobile-col">9865508494</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 10 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 10</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A. அப்துல் ரஹ்மான்</td><td class="mobile-col">6374658303</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 9 -->
+            <div class="ward-card" data-ward="9">
+                <div class="ward-header">வார்டு எண்: 9</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>சுல்தான் கனி</td><td class="mobile-col">9092953012</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 11 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 11</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>லட்சுமணன்</td><td class="mobile-col">9942737495</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>M. அப்துல் ரசாக்</td><td class="mobile-col">9482098150</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. சேக் அப்துல்லா</td><td class="mobile-col">9626930401</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>R. பிரசாத்</td><td class="mobile-col">8760310286</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>S. அமலா தேவி</td><td class="mobile-col">7010678868</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>கௌதம்</td><td class="mobile-col">9629026066</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>சார்லஸ்</td><td class="mobile-col">8124380390</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 10 -->
+            <div class="ward-card" data-ward="10">
+                <div class="ward-header">வார்டு எண்: 10</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A. அப்துல் ரஹ்மான்</td><td class="mobile-col">6374658303</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 12 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 12</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A. செய்யது அன்சாரி</td><td class="mobile-col">6380958982</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. சுகுபுதீன்</td><td class="mobile-col">7639632848</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>A. முகம்மது அபு பரக்கத்</td><td class="mobile-col">63812 80051</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. பசீர் முகம்மது</td><td class="mobile-col">72000 84876</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>S. அரபாத் நிஷா</td><td class="mobile-col">9159988090</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>K. செய்யது இப்ராஹிம்</td><td class="mobile-col">9843949158</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>A. நஜிரா பானு</td><td class="mobile-col">9965233466</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 11 -->
+            <div class="ward-card" data-ward="11">
+                <div class="ward-header">வார்டு எண்: 11</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>லட்சுமணன்</td><td class="mobile-col">9942737495</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>M. அப்துல் ரசாக்</td><td class="mobile-col">9482098150</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. சேக் அப்துல்லா</td><td class="mobile-col">9626930401</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>R. பிரசாத்</td><td class="mobile-col">8760310286</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>S. அமலா தேவி</td><td class="mobile-col">7010678868</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>கௌதம்</td><td class="mobile-col">9629026066</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>சார்லஸ்</td><td class="mobile-col">8124380390</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 13 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 13</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>S. பைசுல் ஹமீது</td><td class="mobile-col">918610687401</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>A. சமீர் அல் அக்ரம்</td><td class="mobile-col">+918015095276</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>A. முகமது மிர்ஷாகான்</td><td class="mobile-col">+917558194471</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. ஜெனிபர் நிஷா</td><td class="mobile-col">+919600843158</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>N. முஹம்மது அஸ்லம் ஷப்ரி</td><td class="mobile-col">+919043886705</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>சபீக் அஹமது</td><td class="mobile-col">+917339525573</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>H. அப்துல்லாஹ்</td><td class="mobile-col">+916369177115</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 12 -->
+            <div class="ward-card" data-ward="12">
+                <div class="ward-header">வார்டு எண்: 12</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>A. செய்யது அன்சாரி</td><td class="mobile-col">6380958982</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>S. சுகுபுதீன்</td><td class="mobile-col">7639632848</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>A. முகம்மது அபு பரக்கத்</td><td class="mobile-col">6381280051</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. பசீர் முகம்மது</td><td class="mobile-col">7200084876</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>S. அரபாத் நிஷா</td><td class="mobile-col">9159988090</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>K. செய்யது இப்ராஹிம்</td><td class="mobile-col">9843949158</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>A. நஜிரா பானு</td><td class="mobile-col">9965233466</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 14 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 14</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>ர. மகேஸ்வரன்</td><td class="mobile-col">6369962631</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>மு. சந்தோஷ்</td><td class="mobile-col">8438261921</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>நா. பிரசன்னா</td><td class="mobile-col">6383231997</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>கோ. சந்துரு</td><td class="mobile-col">7397670126</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>ரா. வினிதா</td><td class="mobile-col">88709 73536</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>ரா. ரேகா</td><td class="mobile-col">77087 12155</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>மு. தீபா</td><td class="mobile-col">97505 24290</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>ச. ரித்திக் ராஜன்</td><td class="mobile-col">80566 62496</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>மு. பாலமுருகன்</td><td class="mobile-col">86674 04100</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 13 -->
+            <div class="ward-card" data-ward="13">
+                <div class="ward-header">வார்டு எண்: 13</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>S. பைசுல் ஹமீது</td><td class="mobile-col">918610687401</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>A. சமீர் அல் அக்ரம்</td><td class="mobile-col">8015095276</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>A. முகமது மிர்ஷாகான்</td><td class="mobile-col">7558194471</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>S. ஜெனிபர் நிஷா</td><td class="mobile-col">9600843158</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>N. முஹம்மது அஸ்லம் ஷப்ரி</td><td class="mobile-col">9043886705</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>சபீக் அஹமது</td><td class="mobile-col">7339525573</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>H. அப்துல்லாஹ்</td><td class="mobile-col">6369177115</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <!-- WARD 15 -->
-        <div class="ward-card">
-            <div class="ward-header"><span>வார்டு எண்: 15</span></div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு (Designation)</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>S. இம்ரான் கான்</td><td class="mobile-col">90424 24279</td></tr>
-                        <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>I. அஸ்மத் ரோஜா</td><td class="mobile-col">96269 50052</td></tr>
-                        <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. கலீல் கரீம்</td><td class="mobile-col">9150594994</td></tr>
-                        <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>G. பிரவீன் குமார்</td><td class="mobile-col">76049 26903</td></tr>
-                        <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>I. ஆனந்தி</td><td class="mobile-col">8807103207</td></tr>
-                        <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>P. லட்சுமணன்</td><td class="mobile-col">9751647316</td></tr>
-                        <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>S. முகமது மீரா</td><td class="mobile-col">918667251097</td></tr>
-                        <tr><td class="sno-col">8</td><td>பூத் கமிட்டி 1</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">9</td><td>பூத் கமிட்டி 2</td><td>-</td><td>-</td></tr>
-                        <tr><td class="sno-col">10</td><td>பூத் கமிட்டி 3</td><td>-</td><td>-</td></tr>
-                    </tbody>
-                </table>
+            <!-- WARD 14 -->
+            <div class="ward-card" data-ward="14">
+                <div class="ward-header">வார்டு எண்: 14</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>ர. மகேஸ்வரன்</td><td class="mobile-col">6369962631</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>மு. சந்தோஷ்</td><td class="mobile-col">8438261921</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>நா. பிரசன்னா</td><td class="mobile-col">6383231997</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>கோ. சந்துரு</td><td class="mobile-col">7397670126</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>ரா. வினிதா</td><td class="mobile-col">8870973536</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>ரா. ரேகா</td><td class="mobile-col">7708712155</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>மு. தீபா</td><td class="mobile-col">9750524290</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- WARD 15 -->
+            <div class="ward-card" data-ward="15">
+                <div class="ward-header">வார்டு எண்: 15</div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th class="sno-col">வ.எண்</th><th>பொறுப்பு</th><th>பெயர்</th><th class="mobile-col">கைப்பேசி எண்</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="sno-col">1</td><td>செயலாளர்</td><td>S. இம்ரான் கான்</td><td class="mobile-col">9042424279</td></tr>
+                            <tr><td class="sno-col">2</td><td>இணை செயலாளர்</td><td>I. அஸ்மத் ரோஜா</td><td class="mobile-col">9626950052</td></tr>
+                            <tr><td class="sno-col">3</td><td>பொருளாளர்</td><td>S. கலீல் கரீம்</td><td class="mobile-col">9150594994</td></tr>
+                            <tr><td class="sno-col">4</td><td>துணைச் செயலாளர் 1</td><td>G. பிரவீன் குமார்</td><td class="mobile-col">7604926903</td></tr>
+                            <tr><td class="sno-col">5</td><td>துணைச் செயலாளர் 2</td><td>I. ஆனந்தி</td><td class="mobile-col">8807103207</td></tr>
+                            <tr><td class="sno-col">6</td><td>செயற்குழு உறுப்பினர் 1</td><td>P. லட்சுமணன்</td><td class="mobile-col">9751647316</td></tr>
+                            <tr><td class="sno-col">7</td><td>செயற்குழு உறுப்பினர் 2</td><td>S. முகமது மீரா</td><td class="mobile-col">8667251097</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
     </div>
 
+    <!-- JavaScript for Live Filtering -->
+    <script>
+        function filterDirectory() {
+            let input = document.getElementById('searchBar').value.toLowerCase().trim();
+            let cards = document.getElementsByClassName('ward-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let card = cards[i];
+                let wardNum = card.getAttribute('data-ward');
+                let textContent = card.innerText.toLowerCase();
+
+                if (input === "" || textContent.includes(input) || wardNum === input || ("ward " + wardNum).includes(input)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
