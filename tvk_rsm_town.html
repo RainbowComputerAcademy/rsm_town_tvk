@@ -24,11 +24,11 @@
             min-height: 100vh;
         }
 
-        /* Top Header Navigation */
+        /* Header Layout with Top-Left Logo */
         header {
             background: linear-gradient(135deg, var(--tvk-red), var(--tvk-dark-red));
             color: #FFFFFF;
-            padding: 18px 20px;
+            padding: 15px 20px;
             border-bottom: 5px solid var(--tvk-yellow);
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             display: flex;
@@ -38,23 +38,45 @@
             gap: 15px;
         }
 
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Fully visible header logo (no circle cropping, no layout shift) */
+        .header-logo {
+            height: 70px;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            background-color: #FFFFFF;
+            padding: 3px;
+            border-radius: 6px;
+            border: 2px solid var(--tvk-yellow);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+            flex-shrink: 0;
+        }
+
         header h1 {
             margin: 0;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            line-height: 1.3;
         }
 
         .complaint-btn {
             display: inline-block;
             background-color: var(--tvk-yellow);
             color: #000000;
-            padding: 10px 20px;
-            font-size: 1.05rem;
+            padding: 10px 18px;
+            font-size: 0.95rem;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15);
             transition: background-color 0.2s, transform 0.2s;
+            white-space: nowrap;
         }
 
         .complaint-btn:hover {
@@ -67,27 +89,6 @@
             margin: 20px auto;
             padding: 0 15px;
             flex: 1;
-        }
-
-        /* Leader / Logo Spotlight Box */
-        .leader-spotlight {
-            background: #FFFFFF;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 2px solid var(--tvk-yellow);
-            border-top: 5px solid var(--tvk-red);
-        }
-
-        .spotlight-logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 260px; /* Adjust height to your preferred image size */
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
         }
 
         /* Filter Box Styles */
@@ -206,24 +207,50 @@
             color: var(--tvk-yellow);
         }
 
-        @media (max-width: 768px) {
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
             header {
-                flex-direction: column;
+                padding: 12px 15px;
+                justify-content: center;
                 text-align: center;
             }
+
+            .header-brand {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                text-align: left;
+            }
+
+            .header-logo {
+                height: 55px;
+                max-width: 90px;
+            }
+
             header h1 {
-                font-size: 1.3rem;
+                font-size: 1.15rem;
             }
-            .spotlight-logo {
-                max-height: 200px;
+
+            .nav-bar {
+                width: 100%;
+                text-align: center;
             }
+
+            .complaint-btn {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
             .filter-box {
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .filter-box input {
                 min-width: 100%;
             }
+
             th, td {
                 padding: 8px 10px;
                 font-size: 0.88rem;
@@ -234,18 +261,16 @@
 <body>
 
     <header>
-        <h1>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி</h1>
+        <div class="header-brand">
+            <img src="perurukalaga_seyalalar.jpg" alt="Logo" class="header-logo">
+            <h1>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி</h1>
+        </div>
         <div class="nav-bar">
             <a href="rsm_town_tvk_complaints.html" class="complaint-btn">📊 புகார்களைக் காண்க (View Complaints)</a>
         </div>
     </header>
 
     <div class="container">
-
-        <!-- Logo / Leaders Banner Box (Full Visibility) -->
-        <div class="leader-spotlight">
-            <img src="perurukalaga_seyalalar.jpg" alt="தமிழக வெற்றிக் கழகம் நிர்வாகிகள்" class="spotlight-logo">
-        </div>
 
         <!-- Live Search / Filter Input -->
         <div class="filter-box">
