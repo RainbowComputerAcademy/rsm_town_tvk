@@ -19,26 +19,29 @@
             margin: 0;
             padding: 0;
             color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* Top Header Navigation */
         header {
             background: linear-gradient(135deg, var(--tvk-red), var(--tvk-dark-red));
             color: #FFFFFF;
-            text-align: center;
-            padding: 25px 15px;
+            padding: 18px 20px;
             border-bottom: 5px solid var(--tvk-yellow);
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         header h1 {
-            margin: 0 0 15px 0;
-            font-size: 1.8rem;
+            margin: 0;
+            font-size: 1.6rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        /* Navigation Button Style */
-        .nav-bar {
-            margin-top: 10px;
         }
 
         .complaint-btn {
@@ -61,8 +64,30 @@
 
         .container {
             max-width: 1200px;
-            margin: 25px auto;
+            margin: 20px auto;
             padding: 0 15px;
+            flex: 1;
+        }
+
+        /* Leader / Logo Spotlight Box */
+        .leader-spotlight {
+            background: #FFFFFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 2px solid var(--tvk-yellow);
+            border-top: 5px solid var(--tvk-red);
+        }
+
+        .spotlight-logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 260px; /* Adjust height to your preferred image size */
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
         }
 
         /* Filter Box Styles */
@@ -161,9 +186,36 @@
             font-weight: 500;
         }
 
-        @media (max-width: 600px) {
+        /* Footer Styling */
+        footer {
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 20px 15px;
+            margin-top: 40px;
+            border-top: 4px solid var(--tvk-yellow);
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #DDDDDD;
+        }
+
+        footer strong {
+            color: var(--tvk-yellow);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
             header h1 {
                 font-size: 1.3rem;
+            }
+            .spotlight-logo {
+                max-height: 200px;
             }
             .filter-box {
                 flex-direction: column;
@@ -189,6 +241,11 @@
     </header>
 
     <div class="container">
+
+        <!-- Logo / Leaders Banner Box (Full Visibility) -->
+        <div class="leader-spotlight">
+            <img src="perurukalaga_seyalalar.jpg" alt="தமிழக வெற்றிக் கழகம் நிர்வாகிகள்" class="spotlight-logo">
+        </div>
 
         <!-- Live Search / Filter Input -->
         <div class="filter-box">
@@ -496,6 +553,12 @@
 
     </div>
 
+    <!-- Footer Section -->
+    <footer>
+        <p><strong>தமிழக வெற்றிக் கழகம்</strong> - ஆர்.எஸ்.மங்கலம் பேரூராட்சி</p>
+        <p>© 2026 அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+    </footer>
+
     <!-- JavaScript for Live Filtering -->
     <script>
         function filterDirectory() {
@@ -507,7 +570,6 @@
                 let wardNum = card.getAttribute('data-ward');
                 let textContent = card.innerText.toLowerCase();
 
-                // Check if search query matches the ward number (e.g. "3" or "வார்டு 3") or any text inside the card
                 if (input === "" || textContent.includes(input) || wardNum === input || ("ward " + wardNum).includes(input)) {
                     card.style.display = "";
                 } else {
