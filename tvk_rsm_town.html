@@ -31,9 +31,32 @@
         }
 
         header h1 {
-            margin: 0;
+            margin: 0 0 15px 0;
             font-size: 1.8rem;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Navigation Button Style */
+        .nav-bar {
+            margin-top: 10px;
+        }
+
+        .complaint-btn {
+            display: inline-block;
+            background-color: var(--tvk-yellow);
+            color: #000000;
+            padding: 10px 20px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .complaint-btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
         }
 
         .container {
@@ -160,6 +183,9 @@
 
     <header>
         <h1>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி</h1>
+        <div class="nav-bar">
+            <a href="rsm_town_tvk_complaints.html" class="complaint-btn">📊 புகார்களைக் காண்க (View Complaints)</a>
+        </div>
     </header>
 
     <div class="container">

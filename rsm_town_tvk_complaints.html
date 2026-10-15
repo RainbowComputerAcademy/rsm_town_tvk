@@ -6,15 +6,15 @@
     <title>தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்</title>
     
     <!-- 
-    =================================================================================
+    ================================================================================
     HOW TO EDIT / ADD COMPLAINTS IN GITHUB:
-    =================================================================================
+    ================================================================================
     1. Open this file on GitHub and click the pencil icon ✏️ (Edit).
     2. Scroll down to the bottom where you see `const complaintsData = [ ... ]`.
     3. Copy one of the complaint objects {...} and paste it as a new item in the list.
     4. Update the values (id, dateReceived, closedDate, ward, secretary, category, details, location, priority, status).
     5. Commit your changes. GitHub Pages will deploy the update automatically within seconds!
-    =================================================================================
+    ================================================================================
     -->
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -82,9 +82,16 @@
                     </div>
                 </div>
                 
-                <div class="bg-black/20 backdrop-blur-md rounded-xl p-3 border border-white/10 text-right self-start md:self-auto">
-                    <h2 class="text-sm font-semibold text-white font-tamil">வார்டு செயலாளர்கள் புகார் பதிவு தளம்</h2>
-                    <p class="text-xs text-slate-200">Ward Secretary Complaints Tracker</p>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                    <!-- Back to Main Page Button -->
+                    <a href="tvk_rsm_town.html" class="inline-flex items-center gap-1.5 bg-tvk-gold text-slate-900 font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm shadow hover:bg-amber-400 transition font-tamil">
+                        <i class="ph ph-arrow-left font-bold"></i> முகப்புப் பக்கம் (Main Page)
+                    </a>
+
+                    <div class="bg-black/20 backdrop-blur-md rounded-xl p-3 border border-white/10 text-right">
+                        <h2 class="text-sm font-semibold text-white font-tamil">வார்டு செயலாளர்கள் புகார் பதிவு தளம்</h2>
+                        <p class="text-xs text-slate-200">Ward Secretary Complaints Tracker</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,20 +259,6 @@
                 priority: "High",
                 status: "Pending"
             }
-            
-            /*,
-               {
-                id: 2,
-                dateReceived: "10-10-2026",
-                closedDate: "11-10-2026",
-                ward: "-1",
-                secretary: "Test",
-                category: "Test",
-                details: "Test",
-                location: "Test",
-                priority: "Test",
-                status: "Test"
-            } */
         ];
 
         // --- Application Script Logic ---
