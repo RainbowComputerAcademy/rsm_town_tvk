@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ஆர்.எஸ்.மங்கலம் மகளிர் வெற்றிப் பயணம் பேருந்து நேரங்கள் | TVK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;600;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tvk-red: #B80000;
+            --tvk-dark-red: #800000;
+            --tvk-yellow: #FFCC00;
+            --tvk-gold: #FFD700;
+            --tvk-dark: #1A1A1A;
+            --tvk-light: #FFFDF0;
+            --tvk-card-bg: #FFFFFF;
+            --tvk-border: #FFE58F;
+            --tvk-green: #2E7D32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Mukta Malar', 'Poppins', sans-serif;
+            background-color: var(--tvk-light);
+            color: var(--tvk-dark);
+            line-height: 1.6;
+            padding: 15px 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(128, 0, 0, 0.15);
+            overflow: hidden;
+            border: 2px solid var(--tvk-yellow);
+        }
+
+        /* Banner Header */
+        .header {
+            background: linear-gradient(135deg, var(--tvk-dark-red) 0%, var(--tvk-red) 100%);
+            color: #ffffff;
+            padding: 22px 20px;
+            position: relative;
+            border-bottom: 5px solid var(--tvk-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Logo Box - Adjusted for Full Image Visibility */
+        .logo-box {
+            flex-shrink: 0;
+            min-width: 100px;
+            max-width: 130px;
+            height: 100px;
+            background: #ffffff;
+            border: 3px solid var(--tvk-gold);
+            border-radius: 12px;
+            padding: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensures complete image is visible without cropping */
+            display: block;
+        }
+
+        .header-content {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--tvk-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            margin-bottom: 4px;
+        }
+
+        .header h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            opacity: 0.95;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--tvk-yellow);
+        }
+
+        /* Action & Filter Bar */
+        .controls-wrapper {
+            background: #FFF9E6;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--tvk-border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            border: 2px solid var(--tvk-red);
+            border-radius: 25px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        /* Quick Time Filters */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #FFFFFF;
+            border: 1px solid var(--tvk-red);
+            color: var(--tvk-dark-red);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--tvk-red);
+            color: #ffffff;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #25D366;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-print {
+            background: var(--tvk-dark-red);
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead {
+            background: var(--tvk-red);
+            color: #ffffff;
+        }
+
+        th {
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-bottom: 3px solid var(--tvk-yellow);
+            white-space: nowrap;
+        }
+
+        th.yellow-header {
+            color: var(--tvk-yellow);
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #F0F0F0;
+            vertical-align: middle;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FFFDF5;
+        }
+
+        tr:hover {
+            background-color: #FFF3CD;
+        }
+
+        /* Destination Badges */
+        .dest-ta {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--tvk-dark-red);
+        }
+
+        .dest-en {
+            font-size: 0.82rem;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Time Pill Badges */
+        .time-badge {
+            display: inline-block;
+            background: #FFFFFF;
+            color: var(--tvk-dark-red);
+            border: 1.5px solid var(--tvk-red);
+            padding: 4px 9px;
+            margin: 3px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Next Departure Highlight */
+        .time-badge.next-bus {
+            background: #E8F5E9;
+            color: var(--tvk-green);
+            border-color: var(--tvk-green);
+            animation: pulse 1.5s infinite;
+            font-size: 0.95rem;
+        }
+
+        .next-tag {
+            background: var(--tvk-green);
+            color: #ffffff;
+            font-size: 0.7rem;
+            padding: 1px 5px;
+            border-radius: 4px;
+            margin-left: 3px;
+            text-transform: uppercase;
+        }
+
+        .note-badge {
+            font-size: 0.8rem;
+            color: #856404;
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #ffeeba;
+            margin-left: 4px;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+        }
+
+        /* TVK IT Wing Official Footer */
+        .footer {
+            text-align: center;
+            padding: 22px 20px;
+            background: var(--tvk-dark-red);
+            color: #ffffff;
+            border-top: 4px solid var(--tvk-yellow);
+        }
+
+        .footer .brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--tvk-yellow);
+            margin-bottom: 4px;
+        }
+
+        .footer .copyright {
+            font-size: 0.88rem;
+            color: #E0E0E0;
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer .tagline {
+            font-size: 0.82rem;
+            color: #FFD700;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 15px;
+            margin-top: 2px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 15px;
+            }
+
+            .logo-box {
+                min-width: 90px;
+                max-width: 110px;
+                height: 85px;
+            }
+
+            .header h1 { font-size: 1.4rem; }
+            .header h2 { font-size: 1rem; }
+            th, td { padding: 10px 12px; }
+            .time-badge { font-size: 0.82rem; padding: 3px 7px; }
+        }
+
+        /* Print Mode Optimization */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { border: none; box-shadow: none; }
+            .controls-wrapper, .action-buttons { display: none !important; }
+            .time-badge { border: 1px solid #000; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header with Adjusted Full Logo -->
+    <div class="header">
+        <div class="logo-box">
+            <img src="perurukalaga_seyalalar.jpg" alt="TVK Logo" onerror="this.onerror=null; this.src='images/perurukalaga_seyalalar.jpg';">
+        </div>
+        <div class="header-content">
+            <h1>தமிழக வெற்றி கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி (TVK)</h1>
+            <h2>மகளிர் கட்டணமில்லா "வெற்றிப்பயணம்" பேருந்து நேரங்கள்</h2>
+            <p>📍 புறப்படும் இடம்: ஆர்.எஸ்.மங்கலம் (R.S. Mangalam)</p>
+        </div>
+    </div>
+
+    <!-- Controls Bar -->
+    <div class="controls-wrapper">
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 ஊர் பெயர் மூலம் தேடுக (Search Destination)...">
+        </div>
+
+        <!-- Time Filters -->
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterByTime('all', this)">அனைத்தும் (All)</button>
+            <button class="filter-btn" onclick="filterByTime('AM', this)">🌅 காலை (AM)</button>
+            <button class="filter-btn" onclick="filterByTime('PM', this)">☀️ மதியம் / மாலை (PM)</button>
+            <button class="filter-btn" onclick="filterByTime('NIGHT', this)">🌙 இரவு (8 PM+)</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn-action" onclick="shareWhatsApp()">📲 வாட்ஸ்அப்பில் பகிர</button>
+            <button class="btn-action btn-print" onclick="window.print()">🖨️ பிரிண்ட் எடுக்க</button>
+        </div>
+    </div>
+
+    <!-- Schedule Table -->
+    <div class="table-responsive">
+        <table id="busTable">
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">எண்</th>
+                    <th class="yellow-header">செல்லும் இடம் (Destination)</th>
+                    <th class="yellow-header">பேருந்து புறப்படும் நேரங்கள் (Timings)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">1</td>
+                    <td>
+                        <div class="dest-ta">பரமக்குடி</div>
+                        <div class="dest-en">Paramakudi</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">06:30 AM</span>
+                        <span class="time-badge">07:00 AM</span>
+                        <span class="time-badge">08:00 AM</span>
+                        <span class="time-badge">10:05 AM <span class="note-badge">சாயல்குடி வழியா</span></span>
+                        <span class="time-badge">11:35 AM</span>
+                        <span class="time-badge">12:25 PM</span>
+                        <span class="time-badge">02:15 PM</span>
+                        <span class="time-badge">02:35 PM</span>
+                        <span class="time-badge">04:15 PM</span>
+                        <span class="time-badge">05:05 PM</span>
+                        <span class="time-badge">06:30 PM</span>
+                        <span class="time-badge">08:00 PM</span>
+                        <span class="time-badge">08:30 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">2</td>
+                    <td>
+                        <div class="dest-ta">மதுரை</div>
+                        <div class="dest-en">Madurai</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">04:30 AM</span>
+                        <span class="time-badge">06:30 AM</span>
+                        <span class="time-badge">10:25 AM</span>
+                        <span class="time-badge">12:35 PM</span>
+                        <span class="time-badge">01:30 PM</span>
+                        <span class="time-badge">02:50 PM</span>
+                        <span class="time-badge">06:50 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">3</td>
+                    <td>
+                        <div class="dest-ta">சிவகங்கை</div>
+                        <div class="dest-en">Sivagangai</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">06:30 AM</span>
+                        <span class="time-badge">08:10 AM</span>
+                        <span class="time-badge">09:25 AM</span>
+                        <span class="time-badge">10:25 AM</span>
+                        <span class="time-badge">12:35 PM</span>
+                        <span class="time-badge">02:50 PM</span>
+                        <span class="time-badge">04:10 PM</span>
+                        <span class="time-badge">05:55 PM</span>
+                        <span class="time-badge">08:10 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">4</td>
+                    <td>
+                        <div class="dest-ta">தேவகோட்டை</div>
+                        <div class="dest-en">Devakottai</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">12:25 PM</span>
+                        <span class="time-badge">02:30 PM</span>
+                        <span class="time-badge">06:15 PM</span>
+                        <span class="time-badge">07:10 PM</span>
+                        <span class="time-badge">08:10 PM</span>
+                        <span class="time-badge">10:00 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">5</td>
+                    <td>
+                        <div class="dest-ta">இராமநாதபுரம் / அரண்மனை</div>
+                        <div class="dest-en">Ramanathapuram / Aranmanai</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">06:00 AM</span>
+                        <span class="time-badge">07:05 AM</span>
+                        <span class="time-badge">07:35 AM</span>
+                        <span class="time-badge">11:00 AM</span>
+                        <span class="time-badge">01:15 PM</span>
+                        <span class="time-badge">01:30 PM</span>
+                        <span class="time-badge">04:00 PM</span>
+                        <span class="time-badge">05:45 PM</span>
+                        <span class="time-badge">06:25 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">6</td>
+                    <td>
+                        <div class="dest-ta">திருவாடானை</div>
+                        <div class="dest-en">Thiruvadanai</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">08:00 AM</span>
+                        <span class="time-badge">10:30 AM</span>
+                        <span class="time-badge">10:50 AM</span>
+                        <span class="time-badge">12:25 PM</span>
+                        <span class="time-badge">02:30 PM</span>
+                        <span class="time-badge">02:50 PM</span>
+                        <span class="time-badge">07:10 PM</span>
+                        <span class="time-badge">08:10 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">7</td>
+                    <td>
+                        <div class="dest-ta">உப்பூா்</div>
+                        <div class="dest-en">Uppur</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">05:05 AM</span>
+                        <span class="time-badge">07:00 AM</span>
+                        <span class="time-badge">08:25 AM</span>
+                        <span class="time-badge">09:25 AM</span>
+                        <span class="time-badge">10:30 AM</span>
+                        <span class="time-badge">11:00 AM</span>
+                        <span class="time-badge">11:35 AM</span>
+                        <span class="time-badge">01:20 PM</span>
+                        <span class="time-badge">02:30 PM</span>
+                        <span class="time-badge">04:40 PM</span>
+                        <span class="time-badge">06:00 PM</span>
+                        <span class="time-badge">07:30 PM</span>
+                        <span class="time-badge">08:25 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">8</td>
+                    <td>
+                        <div class="dest-ta">ஆனந்தூர்</div>
+                        <div class="dest-en">Anandhur</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">04:30 AM</span>
+                        <span class="time-badge">06:15 AM</span>
+                        <span class="time-badge">08:10 AM</span>
+                        <span class="time-badge">10:05 AM</span>
+                        <span class="time-badge">12:00 PM</span>
+                        <span class="time-badge">02:50 PM</span>
+                        <span class="time-badge">03:20 PM</span>
+                        <span class="time-badge">04:10 PM</span>
+                        <span class="time-badge">06:15 PM</span>
+                        <span class="time-badge">07:10 PM</span>
+                        <span class="time-badge">08:10 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">9</td>
+                    <td>
+                        <div class="dest-ta">திருப்பத்தூர்</div>
+                        <div class="dest-en">Tirupattur</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">10:05 AM</span>
+                        <span class="time-badge">05:55 PM</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">10</td>
+                    <td>
+                        <div class="dest-ta">காரைக்குடி</div>
+                        <div class="dest-en">Karaikudi</div>
+                    </td>
+                    <td>
+                        <span class="time-badge">12:25 PM</span>
+                        <span class="time-badge">07:10 PM</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TVK IT Wing Official Footer -->
+    <div class="footer">
+        <div class="brand">தமிழக வெற்றிக் கழகம் • ஆர்.எஸ்.மங்கலம் பேரூராட்சி</div>
+        <div class="copyright">© 2026 TVK IT Wing Portal. All Rights Reserved.</div>
+        <div class="tagline">மக்கள் சேவைக்கான பிரத்யேக தொழில்நுட்ப தளம்</div>
+    </div>
+</div>
+
+<script>
+// Search Filter
+function filterTable() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("busTable");
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            var textValue = td.textContent || td.innerText;
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+// Time of Day Filter
+function filterByTime(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    var badges = document.querySelectorAll('.time-badge');
+    badges.forEach(badge => {
+        var text = badge.innerText;
+        if (type === 'all') {
+            badge.style.display = 'inline-block';
+        } else if (type === 'AM') {
+            badge.style.display = text.includes('AM') ? 'inline-block' : 'none';
+        } else if (type === 'PM') {
+            badge.style.display = text.includes('PM') ? 'inline-block' : 'none';
+        } else if (type === 'NIGHT') {
+            if (text.includes('PM')) {
+                var hour = parseInt(text.split(':')[0]);
+                badge.style.display = (hour === 8 || hour === 9 || hour === 10 || hour === 11) ? 'inline-block' : 'none';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+    });
+}
+
+// Next Bus Real-time Highlight
+function highlightNextBus() {
+    var now = new Date();
+    var currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+    var rows = document.querySelectorAll('#busTable tbody tr');
+    rows.forEach(row => {
+        var badges = row.querySelectorAll('.time-badge');
+        var foundNext = false;
+
+        badges.forEach(badge => {
+            badge.classList.remove('next-bus');
+            var timeStr = badge.childNodes[0].nodeValue.trim();
+            var parts = timeStr.split(/[: ]/);
+            var hour = parseInt(parts[0]);
+            var min = parseInt(parts[1]);
+            var period = parts[2];
+
+            if (period === 'PM' && hour !== 12) hour += 12;
+            if (period === 'AM' && hour === 12) hour = 0;
+
+            var busMinutes = hour * 60 + min;
+
+            if (!foundNext && busMinutes >= currentMinutes) {
+                badge.classList.add('next-bus');
+                var tag = document.createElement('span');
+                tag.className = 'next-tag';
+                tag.innerText = 'அடுத்த பேருந்து';
+                badge.appendChild(tag);
+                foundNext = true;
+            }
+        });
+    });
+}
+
+// WhatsApp Share Function
+function shareWhatsApp() {
+    var text = "🚩 *தமிழக வெற்றி கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி*\n🚌 *மகளிர் கட்டணமில்லா 'வெற்றிப்பயணம்' பேருந்து நேரங்கள்*\n\nஆர்.எஸ்.மங்கலத்திலிருந்து புறப்படும் பேருந்து நேரங்களை அறியவும்:\nhttps://" + window.location.host + window.location.pathname;
+    window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
+}
+
+window.onload = function() {
+    highlightNextBus();
+};
+</script>
+
+</body>
+</html>
