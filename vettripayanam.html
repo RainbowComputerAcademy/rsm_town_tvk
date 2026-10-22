@@ -55,11 +55,10 @@
             gap: 20px;
         }
 
-        /* Logo Box - Adjusted for Full Image Visibility */
+        /* Logo Box */
         .logo-box {
             flex-shrink: 0;
-            min-width: 100px;
-            max-width: 130px;
+            width: 110px;
             height: 100px;
             background: #ffffff;
             border: 3px solid var(--tvk-gold);
@@ -77,7 +76,7 @@
             max-height: 100%;
             width: auto;
             height: auto;
-            object-fit: contain; /* Ensures complete image is visible without cropping */
+            object-fit: contain;
             display: block;
         }
 
@@ -110,7 +109,7 @@
             border: 1px solid var(--tvk-yellow);
         }
 
-        /* Action & Filter Bar */
+        /* Controls Bar */
         .controls-wrapper {
             background: #FFF9E6;
             padding: 15px 20px;
@@ -129,14 +128,13 @@
         .search-bar input {
             width: 100%;
             padding: 10px 18px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             border: 2px solid var(--tvk-red);
             border-radius: 25px;
             outline: none;
             font-family: inherit;
         }
 
-        /* Quick Time Filters */
         .filter-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -148,10 +146,10 @@
             background: #FFFFFF;
             border: 1px solid var(--tvk-red);
             color: var(--tvk-dark-red);
-            padding: 5px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -172,9 +170,9 @@
             gap: 5px;
             background: #25D366;
             color: white;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
@@ -204,8 +202,8 @@
         }
 
         th {
-            padding: 14px 16px;
-            font-size: 1rem;
+            padding: 16px;
+            font-size: 1.05rem;
             font-weight: 700;
             border-bottom: 3px solid var(--tvk-yellow);
             white-space: nowrap;
@@ -216,7 +214,7 @@
         }
 
         td {
-            padding: 12px 16px;
+            padding: 14px 16px;
             border-bottom: 1px solid #F0F0F0;
             vertical-align: middle;
         }
@@ -229,70 +227,207 @@
             background-color: #FFF3CD;
         }
 
-        /* Destination Badges */
+        /* Destination Column */
+        .dest-card-click {
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: block;
+        }
+
+        .dest-card-click:hover {
+            transform: translateX(4px);
+        }
+
         .dest-ta {
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--tvk-dark-red);
         }
 
         .dest-en {
-            font-size: 0.82rem;
-            color: #666;
+            font-size: 0.88rem;
+            color: #555;
             font-weight: 600;
             text-transform: uppercase;
         }
 
-        /* Time Pill Badges */
+        .popup-hint {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 0.78rem;
+            color: #B80000;
+            background: #FFE5E5;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: 1px dashed var(--tvk-red);
+        }
+
+        /* Large Clear Time Pills */
         .time-badge {
             display: inline-block;
             background: #FFFFFF;
             color: var(--tvk-dark-red);
-            border: 1.5px solid var(--tvk-red);
-            padding: 4px 9px;
-            margin: 3px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.88rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 2px solid var(--tvk-red);
+            padding: 6px 14px;
+            margin: 4px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            letter-spacing: 0.5px;
         }
 
-        /* Next Departure Highlight */
+        /* Next Bus Highlight */
         .time-badge.next-bus {
             background: #E8F5E9;
             color: var(--tvk-green);
             border-color: var(--tvk-green);
             animation: pulse 1.5s infinite;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
         }
 
         .next-tag {
             background: var(--tvk-green);
             color: #ffffff;
-            font-size: 0.7rem;
-            padding: 1px 5px;
+            font-size: 0.72rem;
+            padding: 2px 6px;
             border-radius: 4px;
-            margin-left: 3px;
+            margin-left: 5px;
             text-transform: uppercase;
+            vertical-align: middle;
         }
 
         .note-badge {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #856404;
             background-color: #fff3cd;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
             border: 1px solid #ffeeba;
             margin-left: 4px;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+        /* Modal Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 15px;
+            backdrop-filter: blur(3px);
         }
 
-        /* TVK IT Wing Official Footer */
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 16px;
+            border: 3px solid var(--tvk-gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            overflow: hidden;
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--tvk-dark-red) 0%, var(--tvk-red) 100%);
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid var(--tvk-yellow);
+        }
+
+        .modal-title-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-logo {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 8px;
+            border: 2px solid var(--tvk-gold);
+            object-fit: contain;
+            padding: 2px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            color: var(--tvk-yellow);
+            font-weight: 800;
+        }
+
+        .modal-header p {
+            font-size: 0.85rem;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .modal-close {
+            background: var(--tvk-yellow);
+            color: var(--tvk-dark-red);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .modal-body {
+            padding: 25px 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .modal-table th {
+            background: #FFF3CD;
+            color: var(--tvk-dark-red);
+            font-size: 1rem;
+            padding: 10px;
+            border-bottom: 2px solid var(--tvk-red);
+        }
+
+        .modal-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #EEE;
+            text-align: center;
+        }
+
+        .modal-footer {
+            background: #FFF9E6;
+            padding: 12px 20px;
+            text-align: center;
+            border-top: 1px solid var(--tvk-border);
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
             padding: 22px 20px;
@@ -325,7 +460,12 @@
             margin-top: 2px;
         }
 
-        /* Mobile Adjustments */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -334,30 +474,22 @@
             }
 
             .logo-box {
-                min-width: 90px;
-                max-width: 110px;
-                height: 85px;
+                width: 90px;
+                height: 80px;
             }
 
             .header h1 { font-size: 1.4rem; }
             .header h2 { font-size: 1rem; }
             th, td { padding: 10px 12px; }
-            .time-badge { font-size: 0.82rem; padding: 3px 7px; }
-        }
-
-        /* Print Mode Optimization */
-        @media print {
-            body { background: white; padding: 0; }
-            .container { border: none; box-shadow: none; }
-            .controls-wrapper, .action-buttons { display: none !important; }
-            .time-badge { border: 1px solid #000; color: #000; }
+            .time-badge { font-size: 0.95rem; padding: 5px 10px; }
+            .dest-ta { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Header with Adjusted Full Logo -->
+    <!-- Header with Top Left Logo -->
     <div class="header">
         <div class="logo-box">
             <img src="perurukalaga_seyalalar.jpg" alt="TVK Logo" onerror="this.onerror=null; this.src='images/perurukalaga_seyalalar.jpg';">
@@ -375,7 +507,6 @@
             <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 ஊர் பெயர் மூலம் தேடுக (Search Destination)...">
         </div>
 
-        <!-- Time Filters -->
         <div class="filter-tabs">
             <button class="filter-btn active" onclick="filterByTime('all', this)">அனைத்தும் (All)</button>
             <button class="filter-btn" onclick="filterByTime('AM', this)">🌅 காலை (AM)</button>
@@ -383,7 +514,6 @@
             <button class="filter-btn" onclick="filterByTime('NIGHT', this)">🌙 இரவு (8 PM+)</button>
         </div>
 
-        <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="btn-action" onclick="shareWhatsApp()">📲 வாட்ஸ்அப்பில் பகிர</button>
             <button class="btn-action btn-print" onclick="window.print()">🖨️ பிரிண்ட் எடுக்க</button>
@@ -404,8 +534,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">1</td>
                     <td>
-                        <div class="dest-ta">பரமக்குடி</div>
-                        <div class="dest-en">Paramakudi</div>
+                        <div class="dest-card-click" onclick="openPopup('பரமக்குடி', 'Paramakudi', this)">
+                            <div class="dest-ta">பரமக்குடி</div>
+                            <div class="dest-en">Paramakudi</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">06:30 AM</span>
@@ -426,8 +559,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">2</td>
                     <td>
-                        <div class="dest-ta">மதுரை</div>
-                        <div class="dest-en">Madurai</div>
+                        <div class="dest-card-click" onclick="openPopup('மதுரை', 'Madurai', this)">
+                            <div class="dest-ta">மதுரை</div>
+                            <div class="dest-en">Madurai</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">04:30 AM</span>
@@ -442,8 +578,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">3</td>
                     <td>
-                        <div class="dest-ta">சிவகங்கை</div>
-                        <div class="dest-en">Sivagangai</div>
+                        <div class="dest-card-click" onclick="openPopup('சிவகங்கை', 'Sivagangai', this)">
+                            <div class="dest-ta">சிவகங்கை</div>
+                            <div class="dest-en">Sivagangai</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">06:30 AM</span>
@@ -460,8 +599,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">4</td>
                     <td>
-                        <div class="dest-ta">தேவகோட்டை</div>
-                        <div class="dest-en">Devakottai</div>
+                        <div class="dest-card-click" onclick="openPopup('தேவகோட்டை', 'Devakottai', this)">
+                            <div class="dest-ta">தேவகோட்டை</div>
+                            <div class="dest-en">Devakottai</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">12:25 PM</span>
@@ -475,8 +617,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">5</td>
                     <td>
-                        <div class="dest-ta">இராமநாதபுரம் / அரண்மனை</div>
-                        <div class="dest-en">Ramanathapuram / Aranmanai</div>
+                        <div class="dest-card-click" onclick="openPopup('இராமநாதபுரம் / அரண்மனை', 'Ramanathapuram / Aranmanai', this)">
+                            <div class="dest-ta">இராமநாதபுரம் / அரண்மனை</div>
+                            <div class="dest-en">Ramanathapuram / Aranmanai</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">06:00 AM</span>
@@ -493,8 +638,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">6</td>
                     <td>
-                        <div class="dest-ta">திருவாடானை</div>
-                        <div class="dest-en">Thiruvadanai</div>
+                        <div class="dest-card-click" onclick="openPopup('திருவாடானை', 'Thiruvadanai', this)">
+                            <div class="dest-ta">திருவாடானை</div>
+                            <div class="dest-en">Thiruvadanai</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">08:00 AM</span>
@@ -510,8 +658,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">7</td>
                     <td>
-                        <div class="dest-ta">உப்பூா்</div>
-                        <div class="dest-en">Uppur</div>
+                        <div class="dest-card-click" onclick="openPopup('உப்பூா்', 'Uppur', this)">
+                            <div class="dest-ta">உப்பூா்</div>
+                            <div class="dest-en">Uppur</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">05:05 AM</span>
@@ -532,8 +683,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">8</td>
                     <td>
-                        <div class="dest-ta">ஆனந்தூர்</div>
-                        <div class="dest-en">Anandhur</div>
+                        <div class="dest-card-click" onclick="openPopup('ஆனந்தூர்', 'Anandhur', this)">
+                            <div class="dest-ta">ஆனந்தூர்</div>
+                            <div class="dest-en">Anandhur</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">04:30 AM</span>
@@ -552,8 +706,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">9</td>
                     <td>
-                        <div class="dest-ta">திருப்பத்தூர்</div>
-                        <div class="dest-en">Tirupattur</div>
+                        <div class="dest-card-click" onclick="openPopup('திருப்பத்தூர்', 'Tirupattur', this)">
+                            <div class="dest-ta">திருப்பத்தூர்</div>
+                            <div class="dest-en">Tirupattur</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">10:05 AM</span>
@@ -563,8 +720,11 @@
                 <tr>
                     <td style="text-align: center; font-weight: bold;">10</td>
                     <td>
-                        <div class="dest-ta">காரைக்குடி</div>
-                        <div class="dest-en">Karaikudi</div>
+                        <div class="dest-card-click" onclick="openPopup('காரைக்குடி', 'Karaikudi', this)">
+                            <div class="dest-ta">காரைக்குடி</div>
+                            <div class="dest-en">Karaikudi</div>
+                            <span class="popup-hint">🔍 நேர அட்டவணை பார்க்க</span>
+                        </div>
                     </td>
                     <td>
                         <span class="time-badge">12:25 PM</span>
@@ -575,11 +735,43 @@
         </table>
     </div>
 
-    <!-- TVK IT Wing Official Footer -->
+    <!-- Official TVK IT Wing Footer -->
     <div class="footer">
         <div class="brand">தமிழக வெற்றிக் கழகம் • ஆர்.எஸ்.மங்கலம் பேரூராட்சி</div>
         <div class="copyright">© 2026 TVK IT Wing Portal. All Rights Reserved.</div>
         <div class="tagline">மக்கள் சேவைக்கான பிரத்யேக தொழில்நுட்ப தளம்</div>
+    </div>
+</div>
+
+<!-- Modal Popup Box -->
+<div class="modal-overlay" id="busModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title-box">
+                <img src="perurukalaga_seyalalar.jpg" class="modal-logo" alt="TVK Logo" onerror="this.onerror=null; this.src='images/perurukalaga_seyalalar.jpg';">
+                <div>
+                    <h3 id="modalDestTitle">ஆர்.எஸ்.மங்கலம் ➔ Destination</h3>
+                    <p>மகளிர் கட்டணமில்லா "வெற்றிப்பயணம்" நேர அட்டவணை</p>
+                </div>
+            </div>
+            <button class="modal-close" onclick="closePopup()">×</button>
+        </div>
+        <div class="modal-body">
+            <table class="modal-table">
+                <thead>
+                    <tr>
+                        <th>வரிசை எண்</th>
+                        <th>புறப்படும் நேரம் (Departure Time)</th>
+                    </tr>
+                </thead>
+                <tbody id="modalTableBody">
+                    <!-- Dynamic Timings Insertion -->
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-action" onclick="closePopup()" style="background: var(--tvk-red);">மூடுக (Close)</button>
+        </div>
     </div>
 </div>
 
@@ -604,7 +796,7 @@ function filterTable() {
     }
 }
 
-// Time of Day Filter
+// Time Filter
 function filterByTime(type, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -629,7 +821,7 @@ function filterByTime(type, btn) {
     });
 }
 
-// Next Bus Real-time Highlight
+// Next Bus Highlight
 function highlightNextBus() {
     var now = new Date();
     var currentMinutes = now.getHours() * 60 + now.getMinutes();
@@ -664,7 +856,32 @@ function highlightNextBus() {
     });
 }
 
-// WhatsApp Share Function
+// Open Popup Modal
+function openPopup(destTa, destEn, element) {
+    var row = element.closest('tr');
+    var badges = row.querySelectorAll('.time-badge');
+    
+    document.getElementById('modalDestTitle').innerText = 'ஆர்.எஸ்.மங்கலம் ➔ ' + destTa + ' (' + destEn + ')';
+    var tbody = document.getElementById('modalTableBody');
+    tbody.innerHTML = '';
+
+    badges.forEach((badge, index) => {
+        var tr = document.createElement('tr');
+        var isNext = badge.classList.contains('next-bus');
+        var timeText = badge.innerText;
+        
+        tr.innerHTML = '<td>' + (index + 1) + '</td><td><span class="time-badge ' + (isNext ? 'next-bus' : '') + '">' + timeText + '</span></td>';
+        tbody.appendChild(tr);
+    });
+
+    document.getElementById('busModal').style.display = 'flex';
+}
+
+function closePopup() {
+    document.getElementById('busModal').style.display = 'none';
+}
+
+// WhatsApp Share
 function shareWhatsApp() {
     var text = "🚩 *தமிழக வெற்றி கழகம் - ஆர்.எஸ்.மங்கலம் பேரூராட்சி*\n🚌 *மகளிர் கட்டணமில்லா 'வெற்றிப்பயணம்' பேருந்து நேரங்கள்*\n\nஆர்.எஸ்.மங்கலத்திலிருந்து புறப்படும் பேருந்து நேரங்களை அறியவும்:\nhttps://" + window.location.host + window.location.pathname;
     window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
