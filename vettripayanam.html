@@ -323,7 +323,7 @@
             width: fit-content;
         }
 
-        /* Full Width Toggle Button below summary badge */
+        /* Toggle Button */
         .toggle-btn {
             background: linear-gradient(135deg, var(--tvk-dark-red), var(--tvk-red));
             color: #FFFFFF;
@@ -341,7 +341,7 @@
             transition: all 0.2s ease-in-out;
             font-family: inherit;
             margin-top: 6px;
-            width: 100%; /* Spans full width inside cell for clean Tamil display */
+            width: 100%;
             max-width: 280px;
         }
 
@@ -412,6 +412,7 @@
             flex-direction: column;
         }
 
+        /* TIME BADGES */
         .time-badge {
             display: inline-flex;
             align-items: center;
@@ -424,7 +425,30 @@
             font-size: 1.05rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.06);
             letter-spacing: 0.2px;
-            min-height: 44px;
+            min-height: 46px;
+            transition: all 0.3s ease;
+        }
+
+        /* NEXT BUS HIGHLIGHT & PULSE ANIMATION */
+        .time-badge.next-bus {
+            background: #E8F5E9 !important;
+            color: var(--tvk-green) !important;
+            border-color: var(--tvk-green) !important;
+            animation: pulse 1.8s infinite;
+        }
+
+        .next-tag {
+            background: var(--tvk-green);
+            color: #ffffff;
+            font-size: 0.72rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+            display: block;
+            width: 90%;
+            text-align: center;
         }
 
         .note-badge {
@@ -441,20 +465,119 @@
             text-align: center;
         }
 
-        /* Footer */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 107, 35, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(30, 107, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 107, 35, 0); }
+        }
+
+        /* FOOTER & HIGH CONTRAST CONTACT CARDS */
         .footer {
             text-align: center;
-            padding: 20px 15px;
+            padding: 25px 15px;
             background: var(--tvk-dark-red);
             color: #ffffff;
             border-top: 4px solid var(--tvk-yellow);
         }
 
         .footer .brand {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--tvk-yellow);
-            margin-bottom: 6px;
+            margin-bottom: 15px;
+        }
+
+        .contact-box {
+            background: #FFFDF0;
+            border: 2px solid var(--tvk-yellow);
+            border-radius: 14px;
+            padding: 16px 12px;
+            margin: 15px auto 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            color: var(--tvk-dark);
+        }
+
+        .contact-box p.title {
+            font-size: 1.05rem;
+            color: var(--tvk-dark-red);
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .contact-card {
+            background: #FFFFFF;
+            border: 2px solid var(--tvk-border);
+            border-radius: 12px;
+            padding: 12px;
+            flex: 1 1 280px;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .contact-person {
+            font-size: 1.1rem;
+            color: #1A1A1A;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .contact-role {
+            font-size: 0.88rem;
+            color: var(--tvk-dark-red);
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: #FFF3CD;
+            padding: 3px 12px;
+            border-radius: 12px;
+            border: 1px solid #FFE58F;
+        }
+
+        .contact-buttons-flex {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            flex: 1 1 120px;
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .contact-btn.wa {
+            background: #128C7E;
+            color: #FFFFFF;
+        }
+
+        .contact-btn.call {
+            background: var(--tvk-red);
+            color: #FFFFFF;
         }
 
         .footer .copyright {
@@ -492,6 +615,7 @@
             .dest-ta { font-size: 1.25rem; }
             .toggle-btn { max-width: 100%; font-size: 1.05rem; padding: 12px; }
             .summary-badge { width: 100%; text-align: center; }
+            .contact-btn { font-size: 0.82rem; padding: 8px 4px; }
         }
     </style>
 </head>
@@ -568,19 +692,19 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">06:30 AM</span>
-                                <span class="time-badge">07:00 AM</span>
-                                <span class="time-badge">08:00 AM</span>
-                                <span class="time-badge">10:05 AM <span class="note-badge">சாயல்குடி வழியா</span></span>
-                                <span class="time-badge">11:35 AM</span>
-                                <span class="time-badge">12:25 PM</span>
-                                <span class="time-badge">02:15 PM</span>
-                                <span class="time-badge">02:30 PM</span>
-                                <span class="time-badge">04:15 PM</span>
-                                <span class="time-badge">05:05 PM</span>
-                                <span class="time-badge">06:30 PM</span>
-                                <span class="time-badge">08:00 PM</span>
-                                <span class="time-badge">08:30 PM</span>
+                                <span class="time-badge" data-time="06:30">06:30 AM</span>
+                                <span class="time-badge" data-time="07:00">07:00 AM</span>
+                                <span class="time-badge" data-time="08:00">08:00 AM</span>
+                                <span class="time-badge" data-time="10:05">10:05 AM <span class="note-badge">சாயல்குடி வழியா</span></span>
+                                <span class="time-badge" data-time="11:35">11:35 AM</span>
+                                <span class="time-badge" data-time="12:25">12:25 PM</span>
+                                <span class="time-badge" data-time="14:15">02:15 PM</span>
+                                <span class="time-badge" data-time="14:30">02:30 PM</span>
+                                <span class="time-badge" data-time="16:15">04:15 PM</span>
+                                <span class="time-badge" data-time="17:05">05:05 PM</span>
+                                <span class="time-badge" data-time="18:30">06:30 PM</span>
+                                <span class="time-badge" data-time="20:00">08:00 PM</span>
+                                <span class="time-badge" data-time="20:30">08:30 PM</span>
                             </div>
                         </div>
                     </td>
@@ -609,13 +733,13 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">04:30 AM <span class="note-badge">ஆனந்தூர் வழியா</span></span>
-                                <span class="time-badge">06:30 AM</span>
-                                <span class="time-badge">10:25 AM</span>
-                                <span class="time-badge">12:35 PM</span>
-                                <span class="time-badge">01:30 PM</span>
-                                <span class="time-badge">02:50 PM</span>
-                                <span class="time-badge">06:50 PM</span>
+                                <span class="time-badge" data-time="04:30">04:30 AM <span class="note-badge">ஆனந்தூர் வழியா</span></span>
+                                <span class="time-badge" data-time="06:30">06:30 AM</span>
+                                <span class="time-badge" data-time="10:25">10:25 AM</span>
+                                <span class="time-badge" data-time="12:35">12:35 PM</span>
+                                <span class="time-badge" data-time="13:30">01:30 PM</span>
+                                <span class="time-badge" data-time="14:50">02:50 PM</span>
+                                <span class="time-badge" data-time="18:50">06:50 PM</span>
                             </div>
                         </div>
                     </td>
@@ -644,15 +768,15 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">06:30 AM</span>
-                                <span class="time-badge">08:10 AM</span>
-                                <span class="time-badge">09:25 AM</span>
-                                <span class="time-badge">10:25 AM</span>
-                                <span class="time-badge">12:35 PM</span>
-                                <span class="time-badge">02:50 PM</span>
-                                <span class="time-badge">04:10 PM</span>
-                                <span class="time-badge">05:55 PM</span>
-                                <span class="time-badge">08:10 PM</span>
+                                <span class="time-badge" data-time="06:30">06:30 AM</span>
+                                <span class="time-badge" data-time="08:10">08:10 AM</span>
+                                <span class="time-badge" data-time="09:25">09:25 AM</span>
+                                <span class="time-badge" data-time="10:25">10:25 AM</span>
+                                <span class="time-badge" data-time="12:35">12:35 PM</span>
+                                <span class="time-badge" data-time="14:50">02:50 PM</span>
+                                <span class="time-badge" data-time="16:10">04:10 PM</span>
+                                <span class="time-badge" data-time="17:55">05:55 PM</span>
+                                <span class="time-badge" data-time="20:10">08:10 PM</span>
                             </div>
                         </div>
                     </td>
@@ -681,18 +805,18 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">12:25 PM</span>
-                                <span class="time-badge">02:30 PM</span>
-                                <span class="time-badge">06:15 PM</span>
-                                <span class="time-badge">07:10 PM</span>
-                                <span class="time-badge">08:10 PM</span>
-                                <span class="time-badge">10:00 PM</span>
+                                <span class="time-badge" data-time="12:25">12:25 PM</span>
+                                <span class="time-badge" data-time="14:30">02:30 PM</span>
+                                <span class="time-badge" data-time="18:15">06:15 PM</span>
+                                <span class="time-badge" data-time="19:10">07:10 PM</span>
+                                <span class="time-badge" data-time="20:10">08:10 PM</span>
+                                <span class="time-badge" data-time="22:00">10:00 PM</span>
                             </div>
                         </div>
                     </td>
                 </tr>
 
-                <!-- 5. Ramanathapuram -->
+                <!-- 5. Ramanathapuram / Aranmanai -->
                 <tr class="main-row">
                     <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">5</td>
                     <td>
@@ -715,15 +839,15 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">06:00 AM</span>
-                                <span class="time-badge">07:05 AM</span>
-                                <span class="time-badge">07:35 AM</span>
-                                <span class="time-badge">11:00 AM</span>
-                                <span class="time-badge">01:15 PM</span>
-                                <span class="time-badge">01:30 PM</span>
-                                <span class="time-badge">04:00 PM</span>
-                                <span class="time-badge">05:45 PM</span>
-                                <span class="time-badge">06:25 PM</span>
+                                <span class="time-badge" data-time="06:00">06:00 AM</span>
+                                <span class="time-badge" data-time="07:05">07:05 AM</span>
+                                <span class="time-badge" data-time="07:35">07:35 AM</span>
+                                <span class="time-badge" data-time="11:00">11:00 AM</span>
+                                <span class="time-badge" data-time="13:15">01:15 PM</span>
+                                <span class="time-badge" data-time="13:30">01:30 PM</span>
+                                <span class="time-badge" data-time="16:00">04:00 PM</span>
+                                <span class="time-badge" data-time="17:45">05:45 PM</span>
+                                <span class="time-badge" data-time="18:25">06:25 PM</span>
                             </div>
                         </div>
                     </td>
@@ -752,14 +876,14 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">08:00 AM</span>
-                                <span class="time-badge">10:30 AM</span>
-                                <span class="time-badge">10:50 AM</span>
-                                <span class="time-badge">12:25 PM</span>
-                                <span class="time-badge">02:30 PM</span>
-                                <span class="time-badge">02:50 PM</span>
-                                <span class="time-badge">07:10 PM</span>
-                                <span class="time-badge">08:10 PM</span>
+                                <span class="time-badge" data-time="08:00">08:00 AM</span>
+                                <span class="time-badge" data-time="10:30">10:30 AM</span>
+                                <span class="time-badge" data-time="10:50">10:50 AM</span>
+                                <span class="time-badge" data-time="12:25">12:25 PM</span>
+                                <span class="time-badge" data-time="14:30">02:30 PM</span>
+                                <span class="time-badge" data-time="14:50">02:50 PM</span>
+                                <span class="time-badge" data-time="19:10">07:10 PM</span>
+                                <span class="time-badge" data-time="20:10">08:10 PM</span>
                             </div>
                         </div>
                     </td>
@@ -771,7 +895,7 @@
                     <td>
                         <div class="dest-container">
                             <div class="dest-header-flex">
-                                <span class="dest-ta">உப்பூர்</span>
+                                <span class="dest-ta">உப்பூா்</span>
                                 <span class="bus-count-badge">12 பேருந்துகள்</span>
                             </div>
                             <div class="dest-en">Uppur</div>
@@ -788,31 +912,195 @@
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
-                                <span class="time-badge">05:05 AM</span>
-                                <span class="time-badge">07:10 AM</span>
-                                <span class="time-badge">08:35 AM</span>
-                                <span class="time-badge">09:15 AM</span>
-                                <span class="time-badge">10:30 AM</span>
-                                <span class="time-badge">11:00 AM</span>
-                                <span class="time-badge">12:10 PM</span>
-                                <span class="time-badge">02:00 PM</span>
-                                <span class="time-badge">04:15 PM</span>
-                                <span class="time-badge">05:30 PM</span>
-                                <span class="time-badge">07:00 PM</span>
-                                <span class="time-badge">08:25 PM</span>
+                                <span class="time-badge" data-time="05:05">05:05 AM</span>
+                                <span class="time-badge" data-time="07:00">07:00 AM</span>
+                                <span class="time-badge" data-time="08:25">08:25 AM</span>
+                                <span class="time-badge" data-time="09:25">09:25 AM</span>
+                                <span class="time-badge" data-time="10:30">10:30 AM</span>
+                                <span class="time-badge" data-time="11:00">11:00 AM</span>
+                                <span class="time-badge" data-time="11:35">11:35 AM</span>
+                                <span class="time-badge" data-time="13:20">01:20 PM</span>
+                                <span class="time-badge" data-time="14:30">02:30 PM</span>
+                                <span class="time-badge" data-time="16:40">04:40 PM</span>
+                                <span class="time-badge" data-time="18:00">06:00 PM</span>
+                                <span class="time-badge" data-time="19:30">07:30 PM</span>
+                                <span class="time-badge" data-time="20:25">08:25 PM</span>
                             </div>
                         </div>
                     </td>
                 </tr>
+
+                <!-- 8. Anandhur -->
+                <tr class="main-row">
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">8</td>
+                    <td>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">ஆனந்தூர்</span>
+                                <span class="bus-count-badge">11 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Anandhur</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 04:30 AM | கடைசி: 08:10 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="timing-row">
+                    <td colspan="2">
+                        <div class="timing-container">
+                            <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
+                            <div class="timing-grid">
+                                <span class="time-badge" data-time="04:30">04:30 AM</span>
+                                <span class="time-badge" data-time="06:15">06:15 AM</span>
+                                <span class="time-badge" data-time="08:10">08:10 AM</span>
+                                <span class="time-badge" data-time="10:05">10:05 AM</span>
+                                <span class="time-badge" data-time="12:00">12:00 PM</span>
+                                <span class="time-badge" data-time="14:50">02:50 PM</span>
+                                <span class="time-badge" data-time="15:20">03:20 PM</span>
+                                <span class="time-badge" data-time="16:10">04:10 PM</span>
+                                <span class="time-badge" data-time="18:15">06:15 PM</span>
+                                <span class="time-badge" data-time="19:10">07:10 PM</span>
+                                <span class="time-badge" data-time="20:10">08:10 PM</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 9. Tirupattur -->
+                <tr class="main-row">
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">9</td>
+                    <td>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">திருப்பத்தூர்</span>
+                                <span class="bus-count-badge">2 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Tirupattur</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 10:05 AM | கடைசி: 05:55 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="timing-row">
+                    <td colspan="2">
+                        <div class="timing-container">
+                            <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
+                            <div class="timing-grid">
+                                <span class="time-badge" data-time="10:05">10:05 AM</span>
+                                <span class="time-badge" data-time="17:55">05:55 PM</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 10. Karaikudi -->
+                <tr class="main-row">
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">10</td>
+                    <td>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">காரைக்குடி</span>
+                                <span class="bus-count-badge">2 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Karaikudi</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 12:25 PM | கடைசி: 07:10 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="timing-row">
+                    <td colspan="2">
+                        <div class="timing-container">
+                            <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
+                            <div class="timing-grid">
+                                <span class="time-badge" data-time="12:25">12:25 PM</span>
+                                <span class="time-badge" data-time="19:10">07:10 PM</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 11. Thondi -->
+                <tr class="main-row">
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">11</td>
+                    <td>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">தொண்டி</span>
+                                <span class="bus-count-badge">1 பேருந்து</span>
+                            </div>
+                            <div class="dest-en">Thondi</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 02:05 PM | கடைசி: 02:05 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="timing-row">
+                    <td colspan="2">
+                        <div class="timing-container">
+                            <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
+                            <div class="timing-grid">
+                                <span class="time-badge" data-time="14:05">02:05 PM</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
     </div>
 
-    <!-- Footer -->
+    <!-- Official TVK IT Wing Footer with High Contrast Cards -->
     <div class="footer">
-        <div class="brand">தமிழக வெற்றிக் கழகம் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்</div>
-        <div class="copyright">© 2026 Vettri Payanam Bus Timings App</div>
-        <div class="tagline">மக்கள் சேவையில் என்றும் நாம்!</div>
+        <div class="brand">தமிழக வெற்றிக் கழகம் (TVK) - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்</div>
+        
+        <div class="contact-box">
+            <p class="title">🚌 பேருந்து நேர மாற்றங்கள் அல்லது தகவல்களுக்கு தொடர்பு கொள்ள:</p>
+            <div class="contact-grid">
+                <!-- 1. Perur Kazhaga Seyalalar -->
+                <div class="contact-card">
+                    <div class="contact-person">A. அப்துல் ரஹ்மான் (B.Sc)</div>
+                    <div class="contact-role">பேரூர் கழக செயலாளர்</div>
+                    <div class="contact-buttons-flex">
+                        <a href="https://wa.me/916374658303?text=வணக்கம்,%20பேருந்து%20நேர%20மாற்றம்%20தொடர்பாக:" target="_blank" class="contact-btn wa">
+                            💬 WhatsApp
+                        </a>
+                        <a href="tel:+916374658303" class="contact-btn call">
+                            📞 Call: +91 63746 58303
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. IT Wing -->
+                <div class="contact-card">
+                    <div class="contact-person">H.ரியாஸ்தீன் ராஜா (M.C.A)</div>
+                    <div class="contact-role">TVK IT Wing</div>
+                    <div class="contact-buttons-flex">
+                        <a href="https://wa.me/917904619484?text=வணக்கம்,%20பேருந்து%20நேர%20மாற்றம்%20தொடர்பாக:" target="_blank" class="contact-btn wa">
+                            💬 WhatsApp
+                        </a>
+                        <a href="tel:+919043446626" class="contact-btn call">
+                            📞 Call: +91 90434 46626
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">© 2026 TVK IT Wing Portal. All Rights Reserved.</div>
+        <div class="tagline">மக்கள் சேவைக்கான பிரத்யேக தொழில்நுட்ப தளம்</div>
     </div>
 </div>
 
@@ -891,6 +1179,45 @@
         const text = "ஆர்.எஸ்.மங்கலம் மகளிர் கட்டணமில்லா 'வெற்றிப்பயணம்' பேருந்து நேரங்கள் அட்டவணையைப் பார்க்க:";
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + url)}`, '_blank');
     }
+
+    /* AUTOMATICALLY HIGHLIGHT NEXT BUS */
+    function highlightNextBus() {
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+        document.querySelectorAll('.timing-grid').forEach(grid => {
+            const badges = Array.from(grid.querySelectorAll('.time-badge'));
+            let nextFound = false;
+
+            badges.forEach(b => {
+                b.classList.remove('next-bus');
+                const tag = b.querySelector('.next-tag');
+                if (tag) tag.remove();
+            });
+
+            for (let badge of badges) {
+                const timeStr = badge.getAttribute('data-time');
+                if (timeStr) {
+                    const [h, m] = timeStr.split(':').map(Number);
+                    const busMinutes = h * 60 + m;
+
+                    if (busMinutes >= currentMinutes && !nextFound) {
+                        badge.classList.add('next-bus');
+                        const tag = document.createElement('span');
+                        tag.className = 'next-tag';
+                        tag.textContent = 'அடுத்த பேருந்து';
+                        badge.appendChild(tag);
+                        nextFound = true;
+                    }
+                }
+            }
+        });
+    }
+
+    window.onload = function() {
+        highlightNextBus();
+        setInterval(highlightNextBus, 60000);
+    };
 </script>
 
 </body>
