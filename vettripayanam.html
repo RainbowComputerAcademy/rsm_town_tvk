@@ -15,7 +15,7 @@
             --tvk-light: #FFFDF0;
             --tvk-card-bg: #FFFFFF;
             --tvk-border: #FFE58F;
-            --tvk-green: #2E7D32;
+            --tvk-green: #1E6B23;
         }
 
         * {
@@ -88,16 +88,17 @@
         .header h1 {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--tvk-yellow);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            color: #FFFFFF;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
             margin-bottom: 4px;
         }
 
         .header h2 {
             font-size: 1.15rem;
-            font-weight: 600;
-            opacity: 0.95;
-            margin-bottom: 6px;
+            font-weight: 700;
+            color: var(--tvk-yellow);
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .header-badges {
@@ -109,20 +110,22 @@
         }
 
         .header p {
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.15);
+            font-size: 0.92rem;
+            background: #FFFFFF;
+            color: var(--tvk-dark-red);
+            font-weight: 800;
             display: inline-block;
-            padding: 4px 14px;
+            padding: 5px 16px;
             border-radius: 20px;
-            border: 1px solid var(--tvk-yellow);
+            border: 2px solid var(--tvk-yellow);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
         }
 
         .header p.bus-total-badge {
-            background: var(--tvk-yellow);
-            color: var(--tvk-dark-red);
+            background: #FFF3CD;
+            color: #5C0000;
             font-weight: 800;
-            border: 1px solid #FFFFFF;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            border: 2px solid var(--tvk-gold);
         }
 
         /* Controls Bar */
@@ -151,6 +154,8 @@
             outline: none;
             font-family: inherit;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            color: #1A1A1A;
+            background: #FFFFFF;
         }
 
         .clear-search-btn {
@@ -175,11 +180,11 @@
 
         .filter-btn, .master-btn {
             background: #FFFFFF;
-            border: 1px solid var(--tvk-red);
+            border: 1.5px solid var(--tvk-red);
             color: var(--tvk-dark-red);
             padding: 6px 16px;
             border-radius: 20px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
@@ -208,7 +213,7 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: #25D366;
+            background: #1E6B23;
             color: white;
             padding: 8px 18px;
             border-radius: 20px;
@@ -217,7 +222,7 @@
             text-decoration: none;
             cursor: pointer;
             border: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         }
 
         .btn-print {
@@ -284,8 +289,8 @@
 
         .dest-en {
             font-size: 0.88rem;
-            color: #555;
-            font-weight: 600;
+            color: #444;
+            font-weight: 700;
             text-transform: uppercase;
         }
 
@@ -300,10 +305,10 @@
 
         .summary-badge {
             display: inline-block;
-            font-size: 0.82rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
             background: #FFF3CD;
-            color: #856404;
+            color: #664D03;
             padding: 3px 10px;
             border-radius: 12px;
             margin-top: 4px;
@@ -449,59 +454,64 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.4); }
-            70% { box-shadow: 0 0 0 8px rgba(46, 125, 50, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(30, 107, 35, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(30, 107, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 107, 35, 0); }
         }
 
         /* Contact Box Styling in Footer */
         .contact-box {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px dashed var(--tvk-yellow);
-            border-radius: 12px;
-            padding: 16px;
-            margin: 16px auto;
+            background: #FFFDF0;
+            border: 2px solid var(--tvk-yellow);
+            border-radius: 14px;
+            padding: 18px 16px;
+            margin: 18px auto;
             max-width: 750px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .contact-box p.title {
-            font-size: 0.95rem;
-            color: #FFE58F;
-            margin-bottom: 12px;
-            font-weight: 700;
+            font-size: 1rem;
+            color: var(--tvk-dark-red);
+            margin-bottom: 14px;
+            font-weight: 800;
         }
 
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
         }
 
         .contact-card {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            padding: 10px 14px;
-            flex: 1 1 300px;
+            background: #FFFFFF;
+            border: 2px solid var(--tvk-border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            flex: 1 1 280px;
             max-width: 350px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
         .contact-person {
-            font-size: 0.98rem;
-            color: #FFFFFF;
+            font-size: 1.05rem;
+            color: #1A1A1A;
             font-weight: 800;
             margin-bottom: 2px;
         }
 
         .contact-role {
-            font-size: 0.82rem;
-            color: var(--tvk-yellow);
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--tvk-dark-red);
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: #FFF3CD;
+            padding: 2px 10px;
+            border-radius: 10px;
         }
 
         .contact-buttons-flex {
@@ -509,19 +519,22 @@
             flex-wrap: wrap;
             gap: 8px;
             justify-content: center;
+            width: 100%;
         }
 
         .contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 6px 14px;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
             border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.82rem;
+            font-weight: 800;
+            font-size: 0.85rem;
             text-decoration: none;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
             transition: transform 0.2s;
+            flex: 1 1 auto;
         }
 
         .contact-btn:hover {
@@ -529,13 +542,13 @@
         }
 
         .contact-btn.wa {
-            background: #25D366;
-            color: #ffffff;
+            background: #128C7E;
+            color: #FFFFFF;
         }
 
         .contact-btn.call {
-            background: var(--tvk-yellow);
-            color: var(--tvk-dark-red);
+            background: var(--tvk-red);
+            color: #FFFFFF;
         }
 
         /* Footer */
@@ -548,27 +561,29 @@
         }
 
         .footer .brand {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--tvk-yellow);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .footer .copyright {
             font-size: 0.88rem;
-            color: #E0E0E0;
+            color: #F0F0F0;
             margin-bottom: 4px;
             font-family: 'Poppins', sans-serif;
+            font-weight: 600;
         }
 
         .footer .tagline {
             font-size: 0.82rem;
             color: #FFD700;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             display: inline-block;
-            padding: 3px 12px;
+            padding: 3px 14px;
             border-radius: 15px;
-            margin-top: 2px;
+            margin-top: 4px;
+            font-weight: 700;
         }
 
         @media (max-width: 768px) {
@@ -589,13 +604,14 @@
             .time-badge { font-size: 0.95rem; padding: 5px 10px; }
             .dest-ta { font-size: 1.1rem; }
             .toggle-btn { width: 100%; justify-content: center; }
+            .contact-btn { width: 100%; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Header with Top Left Logo & Summary Metrics -->
+    <!-- Header with Top Left Logo & High Contrast Summary Metrics -->
     <div class="header">
         <div class="logo-box">
             <img src="perurukalaga_seyalalar.jpg" alt="TVK Logo" onerror="this.onerror=null; this.src='images/perurukalaga_seyalalar.jpg';">
@@ -1040,7 +1056,7 @@
         </div>
     </div>
 
-    <!-- Official TVK IT Wing Footer with Contact Cards -->
+    <!-- Official TVK IT Wing Footer with High Contrast Cards -->
     <div class="footer">
         <div class="brand">தமிழக வெற்றிக் கழகம் • ஆர்.எஸ்.மங்கலம் பேரூராட்சி</div>
         
