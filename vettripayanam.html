@@ -1254,10 +1254,16 @@ function highlightNextBus() {
 }
 
 // Share on WhatsApp with Live Page Link
-function shareWhatsApp() {
+function shareWhatsAppTest() {
     var pageUrl = window.location.href;
     var text = "🚌 *TVK மகளிர் வெற்றிப் பயணம் பேருந்து நேரங்கள் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்*\n\n" +
                "பேருந்து நேர அட்டவணையை காண கீழே உள்ள லிங்கை கிளிக் செய்யவும்:\n" + pageUrl;
+    window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
+}
+
+
+function shareWhatsApp() {
+    var text = "🚩 *தமிழக வெற்றி கழகம் (TVK)- ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்*\n🚌 *மகளிர் கட்டணமில்லா 'வெற்றிப்பயணம்' பேருந்து நேரங்கள்*\n\nஆர்.எஸ்.மங்கலத்திலிருந்து புறப்படும் பேருந்து நேரங்களை அறியவும்:\nhttps://" + window.location.host + window.location.pathname;
     window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
 }
 
