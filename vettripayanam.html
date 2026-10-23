@@ -28,8 +28,9 @@
             font-family: 'Mukta Malar', 'Poppins', sans-serif;
             background-color: var(--tvk-light);
             color: var(--tvk-dark);
-            line-height: 1.6;
-            padding: 15px 10px;
+            line-height: 1.5;
+            padding: 10px 5px;
+            overflow-x: hidden; /* Prevents any full page horizontal scroll */
         }
 
         .container {
@@ -46,20 +47,20 @@
         .header {
             background: linear-gradient(135deg, var(--tvk-dark-red) 0%, var(--tvk-red) 100%);
             color: #ffffff;
-            padding: 22px 20px;
+            padding: 18px 12px;
             position: relative;
             border-bottom: 5px solid var(--tvk-yellow);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 15px;
         }
 
         /* Logo Box */
         .logo-box {
             flex-shrink: 0;
-            width: 110px;
-            height: 100px;
+            width: 90px;
+            height: 80px;
             background: #ffffff;
             border: 3px solid var(--tvk-gold);
             border-radius: 12px;
@@ -86,36 +87,36 @@
         }
 
         .header h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #FFFFFF;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .header h2 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--tvk-yellow);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .header-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
             align-items: center;
         }
 
         .header p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             background: #FFFFFF;
             color: var(--tvk-dark-red);
             font-weight: 800;
             display: inline-block;
-            padding: 6px 18px;
+            padding: 4px 12px;
             border-radius: 20px;
             border: 2px solid var(--tvk-yellow);
             box-shadow: 0 2px 6px rgba(0,0,0,0.25);
@@ -131,11 +132,11 @@
         /* Controls Bar */
         .controls-wrapper {
             background: #FFF9E6;
-            padding: 15px 20px;
+            padding: 12px 10px;
             border-bottom: 1px solid var(--tvk-border);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
@@ -147,8 +148,8 @@
 
         .search-bar input {
             width: 100%;
-            padding: 12px 42px 12px 20px;
-            font-size: 1.1rem;
+            padding: 10px 38px 10px 16px;
+            font-size: 1rem;
             font-weight: 700;
             border: 2px solid var(--tvk-red);
             border-radius: 25px;
@@ -161,12 +162,12 @@
 
         .clear-search-btn {
             position: absolute;
-            right: 14px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #888;
             cursor: pointer;
             display: none;
@@ -175,7 +176,7 @@
         .filter-tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
         }
 
@@ -183,10 +184,10 @@
             background: #FFFFFF;
             border: 2px solid var(--tvk-red);
             color: var(--tvk-dark-red);
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
             font-family: inherit;
@@ -205,7 +206,7 @@
 
         .action-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -213,12 +214,12 @@
         .btn-action {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: #1E6B23;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 800;
             text-decoration: none;
             cursor: pointer;
@@ -230,16 +231,17 @@
             background: var(--tvk-dark-red);
         }
 
-        /* Table Styling */
+        /* Table & Container Styling */
         .table-responsive {
             width: 100%;
-            overflow-x: auto;
+            overflow: hidden; /* ELIMINATES HORIZONTAL SCROLL */
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
+            table-layout: fixed; /* Ensures standard cell width calculation */
         }
 
         thead {
@@ -248,11 +250,10 @@
         }
 
         th {
-            padding: 18px;
-            font-size: 1.15rem;
+            padding: 12px 8px;
+            font-size: 1.05rem;
             font-weight: 800;
             border-bottom: 3px solid var(--tvk-yellow);
-            white-space: nowrap;
         }
 
         th.yellow-header {
@@ -260,14 +261,14 @@
         }
 
         td {
-            padding: 16px;
+            padding: 12px 8px;
             border-bottom: 1px solid #F0F0F0;
             vertical-align: middle;
+            word-wrap: break-word;
         }
 
         .main-row {
             background-color: #FFFFFF;
-            transition: background 0.2s;
         }
 
         .main-row:hover {
@@ -278,18 +279,18 @@
         .dest-header-flex {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .dest-ta {
-            font-size: 1.45rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--tvk-dark-red);
         }
 
         .dest-en {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: #444;
             font-weight: 700;
             text-transform: uppercase;
@@ -298,21 +299,22 @@
         .bus-count-badge {
             background: var(--tvk-red);
             color: #fff;
-            font-size: 0.85rem;
-            padding: 3px 10px;
-            border-radius: 12px;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 10px;
             font-weight: 800;
+            white-space: nowrap;
         }
 
         .summary-badge {
             display: inline-block;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-weight: 800;
             background: #FFF3CD;
             color: #5C0000;
-            padding: 4px 12px;
-            border-radius: 14px;
-            margin-top: 6px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 4px;
             border: 1px solid #FFE58F;
         }
 
@@ -321,22 +323,18 @@
             background: linear-gradient(135deg, var(--tvk-dark-red), var(--tvk-red));
             color: #FFFFFF;
             border: none;
-            padding: 12px 22px;
-            border-radius: 25px;
+            padding: 10px 14px;
+            border-radius: 20px;
             font-weight: 800;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(184, 0, 0, 0.25);
+            gap: 6px;
+            box-shadow: 0 3px 8px rgba(184, 0, 0, 0.25);
             transition: all 0.2s ease-in-out;
             font-family: inherit;
-        }
-
-        .toggle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(184, 0, 0, 0.35);
+            white-space: nowrap;
         }
 
         .toggle-btn.active {
@@ -345,7 +343,7 @@
 
         .toggle-btn .arrow {
             transition: transform 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .toggle-btn.active .arrow {
@@ -369,89 +367,91 @@
         }
 
         .timing-container {
-            padding: 18px;
+            padding: 10px 6px;
             background: #FFFDF0;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 2px dashed var(--tvk-border);
-            margin: 6px 0;
+            margin: 4px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .timing-title {
             font-weight: 800;
             color: var(--tvk-dark-red);
-            font-size: 1.1rem;
-            margin-bottom: 14px;
+            font-size: 1rem;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        /* Vertical Layout - Maximum 2 items per row */
+        /* STRICT 2-COLUMN NO-SCROLL GRID */
         .timing-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px 6px; /* Vertical gap 8px, Horizontal gap 6px */
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .timing-grid .time-badge {
-            flex: 0 0 calc(50% - 6px); /* Forces exactly 2 items per row */
-            max-width: calc(50% - 6px);
+            flex: 0 0 calc(50% - 3px); /* Fits exactly 2 items side by side without triggering scroll */
+            max-width: calc(50% - 3px);
             box-sizing: border-box;
             justify-content: center;
             text-align: center;
-            flex-direction: column; /* Stacks time and extra notes vertically inside badge */
+            flex-direction: column;
         }
 
-        /* Large & Clear Time Pills */
+        /* COMPACT TIME BADGE (EASY TO READ & NO OVERFLOW) */
         .time-badge {
             display: inline-flex;
             align-items: center;
             background: #FFFFFF;
             color: var(--tvk-dark-red);
             border: 2px solid var(--tvk-red);
-            padding: 10px 8px;
-            border-radius: 10px;
+            padding: 6px 2px;
+            border-radius: 8px;
             font-weight: 800;
-            font-size: 1.15rem; /* Larger font for elders */
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            letter-spacing: 0.5px;
-            transition: transform 0.2s;
-        }
-
-        .time-badge:hover {
-            transform: scale(1.02);
+            font-size: 1.05rem; /* Perfect readable size for mobile */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            letter-spacing: 0.2px;
+            min-height: 44px; /* Touch-friendly height */
         }
 
         .note-badge {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #5C0000;
             background-color: #FFF3CD;
-            padding: 2px 8px;
-            border-radius: 6px;
+            padding: 2px 4px;
+            border-radius: 4px;
             border: 1px solid #FFEEBA;
-            margin-top: 4px;
+            margin-top: 2px;
             font-weight: 700;
             display: block;
+            width: 90%;
+            text-align: center;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 25px 20px;
+            padding: 20px 15px;
             background: var(--tvk-dark-red);
             color: #ffffff;
             border-top: 4px solid var(--tvk-yellow);
         }
 
         .footer .brand {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--tvk-yellow);
             margin-bottom: 6px;
         }
 
         .footer .copyright {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             color: #F0F0F0;
             margin-bottom: 4px;
             font-family: 'Poppins', sans-serif;
@@ -459,13 +459,13 @@
         }
 
         .footer .tagline {
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             color: #FFD700;
             background: rgba(255, 255, 255, 0.15);
             display: inline-block;
-            padding: 4px 16px;
+            padding: 3px 14px;
             border-radius: 15px;
-            margin-top: 6px;
+            margin-top: 4px;
             font-weight: 700;
         }
 
@@ -473,20 +473,19 @@
             .header {
                 flex-direction: column;
                 text-align: center;
-                padding: 18px 15px;
             }
 
-            .logo-box {
-                width: 95px;
-                height: 85px;
+            .header h1 { font-size: 1.35rem; }
+            .header h2 { font-size: 1rem; }
+            
+            /* Give full width to the inner cell on mobile */
+            td[colspan="3"] {
+                padding: 4px 2px !important;
             }
 
-            .header h1 { font-size: 1.45rem; }
-            .header h2 { font-size: 1.1rem; }
-            th, td { padding: 12px 10px; }
-            .dest-ta { font-size: 1.25rem; }
-            .toggle-btn { width: 100%; justify-content: center; font-size: 1.1rem; padding: 14px; }
-            .time-badge { font-size: 1.1rem; padding: 10px 4px; }
+            .dest-ta { font-size: 1.2rem; }
+            .toggle-btn { width: 100%; justify-content: center; font-size: 1rem; padding: 10px; }
+            .time-badge { font-size: 1rem; }
         }
     </style>
 </head>
@@ -535,15 +534,15 @@
         <table id="busTable">
             <thead>
                 <tr>
-                    <th style="width: 50px; text-align: center;">எண்</th>
-                    <th class="yellow-header">செல்லும் இடம் (Destination)</th>
-                    <th class="yellow-header" style="text-align: center;">நேர அட்டவணை (Schedule)</th>
+                    <th style="width: 10%; text-align: center;">எண்</th>
+                    <th class="yellow-header" style="width: 60%;">செல்லும் இடம் (Destination)</th>
+                    <th class="yellow-header" style="width: 30%; text-align: center;">நேர அட்டவணை</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- 1. Paramakudi -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">1</td>
+                    <td style="text-align: center; font-weight: bold;">1</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">பரமக்குடி</span>
@@ -584,7 +583,7 @@
 
                 <!-- 2. Madurai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">2</td>
+                    <td style="text-align: center; font-weight: bold;">2</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">மதுரை</span>
@@ -619,7 +618,7 @@
 
                 <!-- 3. Sivagangai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">3</td>
+                    <td style="text-align: center; font-weight: bold;">3</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">சிவகங்கை</span>
@@ -656,7 +655,7 @@
 
                 <!-- 4. Devakottai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">4</td>
+                    <td style="text-align: center; font-weight: bold;">4</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">தேவகோட்டை</span>
@@ -690,7 +689,7 @@
 
                 <!-- 5. Ramanathapuram -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">5</td>
+                    <td style="text-align: center; font-weight: bold;">5</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">இராமநாதபுரம் / அரண்மனை</span>
@@ -727,7 +726,7 @@
 
                 <!-- 6. Thiruvadanai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">6</td>
+                    <td style="text-align: center; font-weight: bold;">6</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">திருவாடானை</span>
@@ -763,7 +762,7 @@
 
                 <!-- 7. Uppur -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">7</td>
+                    <td style="text-align: center; font-weight: bold;">7</td>
                     <td>
                         <div class="dest-header-flex">
                             <span class="dest-ta">உப்பூர்</span>
