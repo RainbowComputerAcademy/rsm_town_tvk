@@ -30,7 +30,7 @@
             color: var(--tvk-dark);
             line-height: 1.5;
             padding: 10px 5px;
-            overflow-x: hidden; /* Prevents any full page horizontal scroll */
+            overflow-x: hidden;
         }
 
         .container {
@@ -56,7 +56,6 @@
             gap: 15px;
         }
 
-        /* Logo Box */
         .logo-box {
             flex-shrink: 0;
             width: 90px;
@@ -231,17 +230,17 @@
             background: var(--tvk-dark-red);
         }
 
-        /* Table & Container Styling */
+        /* Table & Layout */
         .table-responsive {
             width: 100%;
-            overflow: hidden; /* ELIMINATES HORIZONTAL SCROLL */
+            overflow: hidden;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            table-layout: fixed; /* Ensures standard cell width calculation */
+            table-layout: fixed;
         }
 
         thead {
@@ -275,16 +274,22 @@
             background-color: #FFFDF2;
         }
 
-        /* Destination Styling */
+        /* Destination Card Styling */
+        .dest-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
         .dest-header-flex {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .dest-ta {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--tvk-dark-red);
         }
@@ -312,29 +317,32 @@
             font-weight: 800;
             background: #FFF3CD;
             color: #5C0000;
-            padding: 3px 10px;
+            padding: 4px 10px;
             border-radius: 12px;
-            margin-top: 4px;
             border: 1px solid #FFE58F;
+            width: fit-content;
         }
 
-        /* Toggle Button */
+        /* Full Width Toggle Button below summary badge */
         .toggle-btn {
             background: linear-gradient(135deg, var(--tvk-dark-red), var(--tvk-red));
             color: #FFFFFF;
             border: none;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border-radius: 20px;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
             box-shadow: 0 3px 8px rgba(184, 0, 0, 0.25);
             transition: all 0.2s ease-in-out;
             font-family: inherit;
-            white-space: nowrap;
+            margin-top: 6px;
+            width: 100%; /* Spans full width inside cell for clean Tamil display */
+            max-width: 280px;
         }
 
         .toggle-btn.active {
@@ -343,7 +351,7 @@
 
         .toggle-btn .arrow {
             transition: transform 0.3s ease;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
         .toggle-btn.active .arrow {
@@ -390,13 +398,13 @@
         .timing-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px 6px; /* Vertical gap 8px, Horizontal gap 6px */
+            gap: 8px 6px;
             width: 100%;
             box-sizing: border-box;
         }
 
         .timing-grid .time-badge {
-            flex: 0 0 calc(50% - 3px); /* Fits exactly 2 items side by side without triggering scroll */
+            flex: 0 0 calc(50% - 3px);
             max-width: calc(50% - 3px);
             box-sizing: border-box;
             justify-content: center;
@@ -404,7 +412,6 @@
             flex-direction: column;
         }
 
-        /* COMPACT TIME BADGE (EASY TO READ & NO OVERFLOW) */
         .time-badge {
             display: inline-flex;
             align-items: center;
@@ -414,10 +421,10 @@
             padding: 6px 2px;
             border-radius: 8px;
             font-weight: 800;
-            font-size: 1.05rem; /* Perfect readable size for mobile */
+            font-size: 1.05rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.06);
             letter-spacing: 0.2px;
-            min-height: 44px; /* Touch-friendly height */
+            min-height: 44px;
         }
 
         .note-badge {
@@ -478,14 +485,13 @@
             .header h1 { font-size: 1.35rem; }
             .header h2 { font-size: 1rem; }
             
-            /* Give full width to the inner cell on mobile */
-            td[colspan="3"] {
+            td[colspan="2"] {
                 padding: 4px 2px !important;
             }
 
-            .dest-ta { font-size: 1.2rem; }
-            .toggle-btn { width: 100%; justify-content: center; font-size: 1rem; padding: 10px; }
-            .time-badge { font-size: 1rem; }
+            .dest-ta { font-size: 1.25rem; }
+            .toggle-btn { max-width: 100%; font-size: 1.05rem; padding: 12px; }
+            .summary-badge { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -534,32 +540,31 @@
         <table id="busTable">
             <thead>
                 <tr>
-                    <th style="width: 10%; text-align: center;">எண்</th>
-                    <th class="yellow-header" style="width: 60%;">செல்லும் இடம் (Destination)</th>
-                    <th class="yellow-header" style="width: 30%; text-align: center;">நேர அட்டவணை</th>
+                    <th style="width: 12%; text-align: center;">எண்</th>
+                    <th class="yellow-header" style="width: 88%;">செல்லும் இடம் & பேருந்து அட்டவணை</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- 1. Paramakudi -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">1</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">1</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">பரமக்குடி</span>
-                            <span class="bus-count-badge">13 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">பரமக்குடி</span>
+                                <span class="bus-count-badge">13 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Paramakudi</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 06:30 AM | கடைசி: 08:30 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Paramakudi</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 06:30 AM | கடைசி: 08:30 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -583,24 +588,24 @@
 
                 <!-- 2. Madurai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">2</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">2</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">மதுரை</span>
-                            <span class="bus-count-badge">7 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">மதுரை</span>
+                                <span class="bus-count-badge">7 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Madurai</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 04:30 AM | கடைசி: 06:50 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Madurai</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 04:30 AM | கடைசி: 06:50 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -618,24 +623,24 @@
 
                 <!-- 3. Sivagangai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">3</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">3</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">சிவகங்கை</span>
-                            <span class="bus-count-badge">9 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">சிவகங்கை</span>
+                                <span class="bus-count-badge">9 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Sivagangai</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 06:30 AM | கடைசி: 08:10 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Sivagangai</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 06:30 AM | கடைசி: 08:10 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -655,24 +660,24 @@
 
                 <!-- 4. Devakottai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">4</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">4</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">தேவகோட்டை</span>
-                            <span class="bus-count-badge">6 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">தேவகோட்டை</span>
+                                <span class="bus-count-badge">6 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Devakottai</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 12:25 PM | கடைசி: 10:00 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Devakottai</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 12:25 PM | கடைசி: 10:00 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -689,24 +694,24 @@
 
                 <!-- 5. Ramanathapuram -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">5</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">5</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">இராமநாதபுரம் / அரண்மனை</span>
-                            <span class="bus-count-badge">9 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">இராமநாதபுரம் / அரண்மனை</span>
+                                <span class="bus-count-badge">9 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Ramanathapuram / Aranmanai</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 06:00 AM | கடைசி: 06:25 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Ramanathapuram / Aranmanai</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 06:00 AM | கடைசி: 06:25 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -726,24 +731,24 @@
 
                 <!-- 6. Thiruvadanai -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">6</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">6</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">திருவாடானை</span>
-                            <span class="bus-count-badge">8 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">திருவாடானை</span>
+                                <span class="bus-count-badge">8 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Thiruvadanai</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 08:00 AM | கடைசி: 08:10 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Thiruvadanai</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 08:00 AM | கடைசி: 08:10 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
@@ -762,24 +767,24 @@
 
                 <!-- 7. Uppur -->
                 <tr class="main-row">
-                    <td style="text-align: center; font-weight: bold;">7</td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.1rem;">7</td>
                     <td>
-                        <div class="dest-header-flex">
-                            <span class="dest-ta">உப்பூர்</span>
-                            <span class="bus-count-badge">12 பேருந்துகள்</span>
+                        <div class="dest-container">
+                            <div class="dest-header-flex">
+                                <span class="dest-ta">உப்பூர்</span>
+                                <span class="bus-count-badge">12 பேருந்துகள்</span>
+                            </div>
+                            <div class="dest-en">Uppur</div>
+                            <div class="summary-badge">⏱️ முதல் பேருந்து: 05:05 AM | கடைசி: 08:25 PM</div>
+                            <button class="toggle-btn" onclick="toggleTimings(this)">
+                                <span>நேரங்கள் பார்க்க</span>
+                                <span class="arrow">▼</span>
+                            </button>
                         </div>
-                        <div class="dest-en">Uppur</div>
-                        <div class="summary-badge">⏱️ முதல் பேருந்து: 05:05 AM | கடைசி: 08:25 PM</div>
-                    </td>
-                    <td style="text-align: center;">
-                        <button class="toggle-btn" onclick="toggleTimings(this)">
-                            <span>நேரங்கள் பார்க்க</span>
-                            <span class="arrow">▼</span>
-                        </button>
                     </td>
                 </tr>
                 <tr class="timing-row">
-                    <td colspan="3">
+                    <td colspan="2">
                         <div class="timing-container">
                             <div class="timing-title">🚌 புறப்படும் நேரங்கள் (Departure Timings):</div>
                             <div class="timing-grid">
