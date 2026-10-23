@@ -459,40 +459,66 @@
             background: rgba(255, 255, 255, 0.12);
             border: 1px dashed var(--tvk-yellow);
             border-radius: 12px;
-            padding: 14px 16px;
+            padding: 16px;
             margin: 16px auto;
-            max-width: 650px;
+            max-width: 750px;
         }
 
-        .contact-box p {
-            font-size: 0.9rem;
+        .contact-box p.title {
+            font-size: 0.95rem;
             color: #FFE58F;
-            margin-bottom: 6px;
-            font-weight: 600;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .contact-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 10px 14px;
+            flex: 1 1 300px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .contact-person {
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: #FFFFFF;
-            margin-bottom: 10px;
-            font-weight: 700;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .contact-role {
+            font-size: 0.82rem;
+            color: var(--tvk-yellow);
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .contact-buttons-flex {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
         }
 
         .contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 7px 16px;
+            gap: 5px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             text-decoration: none;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             transition: transform 0.2s;
@@ -1014,20 +1040,40 @@
         </div>
     </div>
 
-    <!-- Official TVK IT Wing Footer with Contact Card -->
+    <!-- Official TVK IT Wing Footer with Contact Cards -->
     <div class="footer">
         <div class="brand">தமிழக வெற்றிக் கழகம் • ஆர்.எஸ்.மங்கலம் பேரூராட்சி</div>
         
         <div class="contact-box">
-            <p>🚌 பேருந்து நேர மாற்றங்கள் அல்லது தகவல்களுக்கு தொடர்பு கொள்ள:</p>
-            <div class="contact-person">ஹமீத் ரியாஸ்தீன் ராஜா (Hameed Riyasdeen Raja) • TVK IT Wing</div>
-            <div class="contact-buttons-flex">
-                <a href="https://wa.me/917904619484?text=வணக்கம்,%20பேருந்து%20நேர%20மாற்றம்%20தொடர்பாக:" target="_blank" class="contact-btn wa">
-                    💬 WhatsApp: +91 79046 19484
-                </a>
-                <a href="tel:+919043446626" class="contact-btn call">
-                    📞 Call: +91 90434 46626
-                </a>
+            <p class="title">🚌 பேருந்து நேர மாற்றங்கள் அல்லது தகவல்களுக்கு தொடர்பு கொள்ள:</p>
+            <div class="contact-grid">
+                <!-- 1. Perur Kazhaga Seyalalar -->
+                <div class="contact-card">
+                    <div class="contact-person">A. அப்துல் ரஹ்மான் (B.Sc)</div>
+                    <div class="contact-role">பேரூர் கழக செயலாளர்</div>
+                    <div class="contact-buttons-flex">
+                        <a href="https://wa.me/916374658303?text=வணக்கம்,%20பேருந்து%20நேர%20மாற்றம்%20தொடர்பாக:" target="_blank" class="contact-btn wa">
+                            💬 WhatsApp
+                        </a>
+                        <a href="tel:+916374658303" class="contact-btn call">
+                            📞 Call: +91 63746 58303
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. IT Wing -->
+                <div class="contact-card">
+                    <div class="contact-person">H.ரியாஸ்தீன் ராஜா (M.C.A)</div>
+                    <div class="contact-role">TVK IT Wing</div>
+                    <div class="contact-buttons-flex">
+                        <a href="https://wa.me/917904619484?text=வணக்கம்,%20பேருந்து%20நேர%20மாற்றம்%20தொடர்பாக:" target="_blank" class="contact-btn wa">
+                            💬 WhatsApp
+                        </a>
+                        <a href="tel:+919043446626" class="contact-btn call">
+                            📞 Call: +91 90434 46626
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
