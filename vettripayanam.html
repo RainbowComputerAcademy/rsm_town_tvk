@@ -86,7 +86,7 @@
         }
 
         .header h1 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: #FFFFFF;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
@@ -598,7 +598,7 @@
                 height: 80px;
             }
 
-            .header h1 { font-size: 1.4rem; }
+            .header h1 { font-size: 1.35rem; }
             .header h2 { font-size: 1rem; }
             th, td { padding: 10px 12px; }
             .time-badge { font-size: 0.95rem; padding: 5px 10px; }
@@ -1253,10 +1253,11 @@ function highlightNextBus() {
     });
 }
 
-// Share on WhatsApp
+// Share on WhatsApp with Live Page Link
 function shareWhatsApp() {
+    var pageUrl = window.location.href;
     var text = "🚌 *TVK மகளிர் வெற்றிப் பயணம் பேருந்து நேரங்கள் - ஆர்.எஸ்.மங்கலம் பேரூர் கழகம்*\n\n" +
-               "பேருந்து நேர அட்டவணையை காண இணையதளத்தை பார்வையிடவும்.";
+               "பேருந்து நேர அட்டவணையை காண கீழே உள்ள லிங்கை கிளிக் செய்யவும்:\n" + pageUrl;
     window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
 }
 
